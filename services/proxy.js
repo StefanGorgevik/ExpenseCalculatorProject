@@ -21,7 +21,7 @@ app.all('/*', (req, res) => {
 
 
 
-app.listen(process.env.PORT || 3000, err => {
+app.listen(process.env.PORT, err => {
     if(err){
         console.log('could not start server');
         console.log(err);
