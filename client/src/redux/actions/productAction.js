@@ -6,6 +6,7 @@ export const getProducts = (data) => {
     }
 }
 export const saveProductAction = (data) => {
+    console.log(data)
     return {
         type: 'SAVE_PRODUCT',
         payload: data
