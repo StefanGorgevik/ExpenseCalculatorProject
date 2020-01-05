@@ -1,0 +1,11 @@
+{
+    "db": {
+        "host": "",
+        "dbname": "",
+        "username": "",
+        "password": ""
+    },
+    "jwt": {
+        "key": ""
+    }
+}

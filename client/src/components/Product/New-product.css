@@ -1,0 +1,93 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color:#E5EDF5;
+    overflow-x: hidden;
+}
+
+/* Main content*/
+
+#main-box {
+    display: flex;
+    width: 1020px;
+    max-height: 800px;
+    margin: auto;
+    margin-left: 200px;
+    margin-bottom: 10px;
+}
+.box-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+    margin:auto;
+    background-color: #fff;
+    padding: 0;
+    height: 600px;
+    width: 570px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.new-product-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items:center;
+    background-color: #e9e7e7;
+    text-align: center;
+    color:#9a9a9a;
+    width: 450px;
+    height: 600px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+#new-products-h3{
+    margin-left: 200px;
+    margin-bottom: 40px;
+    margin-top: 25px;
+}
+.new-product-div span i{
+    font-size: 50px;
+    color: #9a9a9a;
+}
+.new-product-div h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+#primary-button {
+    margin-top:40px;
+}
+.form-box {
+    margin-left: 50px;
+}
+
+@media screen and (max-width: 800px) {
+    button {
+       display: inline-block;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    .buttons {
+       display: inline-block;
+       flex-wrap: wrap;
+       flex-direction: column;
+       flex: 1;
+    }
+    .right-side{
+        width: 25%;
+    }
+    .main-div label{
+        position: absolute;
+        top: 80px;
+        left: 50px;
+    }
+}

@@ -1,0 +1,43 @@
+.Table {
+    width: 85%;
+    border-collapse: collapse; 
+    text-align: center;  
+}
+.Table tr td {
+    padding: 0;
+}
+.Table thead{
+    border-bottom: 1px solid black;
+}
+.Table thead th{
+    height: 50px;
+}
+.body-tr{
+    background-color: white;
+    border-bottom: 5px solid #E5EDF5;
+}
+#emptyTd {
+    height: 12px;
+    background-color: inherit;
+}
+
+.Table .body-tr{
+    height: 50px;
+}
+
+.main-box{
+    display: flex;
+    justify-content: center;
+}
+
+.Table
+#edit-button,
+#delete-button {
+    background-color: inherit;
+    border: none;
+    
+}
+
+.Table i .far .fa-edit {
+    height: 20px;
+}
