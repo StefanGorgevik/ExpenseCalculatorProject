@@ -10,14 +10,8 @@ const initState = {
 export function productReducer(state = initState, action) {
     switch (action.type) {
         case "GET_PRODUCTS": {
-            console.log('!!!!!! getProducts !!!!!!!!!!!!!!!!!!!!!!!!!!', action.payload)
             return {
                 ...state, products: action.payload
-            }
-        }
-        case "SAVE_PRODUCT": {
-            return {
-                ...state, products: [...state.products, action.payload]
             }
         }
         case "DELETE_PRODUCT": {
