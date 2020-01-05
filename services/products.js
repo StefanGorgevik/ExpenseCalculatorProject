@@ -25,9 +25,9 @@ app.use(                                                       //sekoj req ke po
 
 //routes and methods
 //const url = '/app/v1/products/'
-app.get('/app/v1/products', productHandler.getAllProducts);
+app.get('/app/v1/products/', productHandler.getAllProducts);
 app.get('/app/v1/products/:id', productHandler.getOne);
-app.post('/app/v1/products', productHandler.saveProduct);
+app.post('/app/v1/products/', productHandler.saveProduct);
 app.put('/app/v1/products/:id', productHandler.replaceProduct);
 app.patch('/app/v1/products/:id', productHandler.updateProduct);
 app.delete('/app/v1/products/:id', productHandler.deleteProduct);

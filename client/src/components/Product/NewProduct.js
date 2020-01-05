@@ -39,7 +39,7 @@ class NewProduct extends React.Component {
                 price: this.state.price
             }
             store.dispatch(saveProductAction(newProduct))
-            axios.post('https://stark-island-29614.herokuapp.com/app/v1/products',
+            axios.post('https://stark-island-29614.herokuapp.com/app/v1/products/',
                 {
                 name: this.state.name,
                 type: this.state.type,
