@@ -21,8 +21,8 @@ class Table extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         console.log(`!!!!Comp did MOUNT in Table!!!!`)      
+        console.log(this.props)
         if(this.props.products) {
             axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
             {
@@ -104,7 +104,7 @@ class Table extends React.Component {
         if (this.props.products) {
             console.log(this.props.products )
             tableRow = this.props.products.map(product => {
-                return (<TableRow key={product._id} name={product.name}
+                return (<TableRow key={product.name + Math.random()} name={product.name}
                     deleteProduct={() => this.deleteProductHandler(product)}
                     editProduct={() => this.editProduct(product)}
                     type={product.type}

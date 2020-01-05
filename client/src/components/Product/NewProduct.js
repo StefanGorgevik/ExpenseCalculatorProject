@@ -24,7 +24,6 @@ class NewProduct extends React.Component {
     }
 
     createProduct = (event) => {
-        store.dispatch(saveProductAction(this.state))
         if (this.state.name === '' || this.state.type === '' ||
             this.state.description === '' || this.state.date === '' || this.state.price === '') {
             event.preventDefault();
@@ -32,6 +31,14 @@ class NewProduct extends React.Component {
         } else if (this.state.name !== '' || this.state.type !== '' ||
             this.state.description !== '' || this.state.date !== '' || this.state.price !== '') {
             store.dispatch(tableUpdated(!this.state.tableUpdated))
+            const newProduct = {
+                name: this.state.name,
+                type: this.state.type,
+                description: this.state.description,
+                date: this.state.date,
+                price: this.state.price
+            }
+            store.dispatch(saveProductAction(newProduct))
             axios.post('https://stark-island-29614.herokuapp.com/app/v1/products',
                 {
                 name: this.state.name,
