@@ -23,7 +23,7 @@ class Table extends React.Component {
     componentDidMount() {
         console.log(this.props)
         console.log(`!!!!Comp did MOUNT in Table!!!!`)      
-        axios.get("https://evening-mountain-46130.herokuapp.com/app/v1/products/?sort=date:desc",
+        axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -48,7 +48,7 @@ class Table extends React.Component {
     componentDidUpdate() {
         if (this.props.tableUpdated) {
                 console.log(`!!!!!!Comp did UPDATE in Table !!!!`)
-                axios.get("https://evening-mountain-46130.herokuapp.com/app/v1/products/?sort=date:desc",
+                axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -79,7 +79,7 @@ class Table extends React.Component {
 
     deleteProduct = (product, productID) => {
         this.setState({ alertShow: false })
-        axios.delete(`https://evening-mountain-46130.herokuapp.com/app/v1/products/${productID}`,
+        axios.delete(`https://stark-island-29614.herokuapp.com/app/v1/products/${productID}`,
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`

@@ -24,7 +24,7 @@ class Expenses extends React.Component {
 
     componentDidUpdate() {
         if (this.state.yearlySelected === 'all') {
-            axios.get("https://evening-mountain-46130.herokuapp.com/app/v1/products?sort=date:desc",
+            axios.get('https://stark-island-29614.herokuapp.com/app/v1/products?sort=date:desc',
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -39,7 +39,7 @@ class Expenses extends React.Component {
         } else if (this.state.yearlySelected != null && this.state.yearlySelected.length === 4 && !this.state.monthlyDisplay ) {
             let dateFrom = new Date(`${this.state.yearlySelected}-01-01 00:00:00.000`).getTime()
             let dateTo = new Date(`${this.state.yearlySelected}-12-31 23:59:59.000`).getTime()
-            axios.get(`https://evening-mountain-46130.herokuapp.com/app/v1/products?date_from=${dateFrom}&date_to=${dateTo}`,
+            axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products?date_from=${dateFrom}&date_to=${dateTo}`,
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -63,7 +63,7 @@ class Expenses extends React.Component {
             }
             let dateFrom = new Date(`${this.state.yearlySelected}-${monthNum}-01 00:00:00.000`).getTime()
             let dateTo = new Date(`${this.state.yearlySelected}-${monthNum}-31 23:59:59.000`).getTime()
-            axios.get(`https://evening-mountain-46130.herokuapp.com/app/v1/products?date_from=${dateFrom}&date_to=${dateTo}`,
+            axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products?date_from=${dateFrom}&date_to=${dateTo}`,
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt')}`

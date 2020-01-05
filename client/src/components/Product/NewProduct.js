@@ -32,7 +32,7 @@ class NewProduct extends React.Component {
         } else if (this.state.name !== '' || this.state.type !== '' ||
             this.state.description !== '' || this.state.date !== '' || this.state.price !== '') {
             store.dispatch(tableUpdated(!this.state.tableUpdated))
-            axios.post('"https://evening-mountain-46130.herokuapp.com/app/v1/products',
+            axios.post('https://stark-island-29614.herokuapp.com/app/v1/products',
                 {
                 name: this.state.name,
                 type: this.state.type,
@@ -59,7 +59,7 @@ class NewProduct extends React.Component {
             event.preventDefault()
         } else {
             store.dispatch(tableUpdated(!this.state.tableUpdated))
-            axios.put(`"https://evening-mountain-46130.herokuapp.com/app/v1/products/${this.props.productToEdit._id}`,
+            axios.put(`https://stark-island-29614.herokuapp.com/app/v1/products/${this.props.productToEdit._id}`,
                 {
                     name: this.state.name,
                     type: this.state.type,

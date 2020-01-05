@@ -16,7 +16,7 @@ class Products extends React.Component {
 
     componentDidUpdate() {
         if(this.state.filterOption !== null) {
-            axios.get(`https://evening-mountain-46130.herokuapp.com/app/v1/products?sort=${this.state.filterOption}`,
+            axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products?sort=${this.state.filterOption}`,
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
