@@ -41,8 +41,6 @@ class Table extends React.Component {
             })
             .catch(err => {
                 console.log(err);
-                console.log(err.response);
-                console.log("err.response");
             })
         }
     }
@@ -103,9 +101,8 @@ class Table extends React.Component {
 
     render() {
         let tableRow = null;
-        console.log(this.props.products)
         if (this.props.products) {
-            console.log(this.props.products + 'd')
+            console.log(this.props.products )
             tableRow = this.props.products.map(product => {
                 return (<TableRow key={product._id} name={product.name}
                     deleteProduct={() => this.deleteProductHandler(product)}
