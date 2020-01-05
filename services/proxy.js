@@ -19,8 +19,6 @@ app.all('/*', (req, res) => {
     appProxy.web(req, res, {target: 'http://localhost:8083'});
 });
 
-
-
 app.listen(process.env.PORT, err => {
     if(err){
         console.log('could not start server');
