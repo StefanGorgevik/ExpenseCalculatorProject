@@ -23,7 +23,8 @@ class Table extends React.Component {
     componentDidMount() {
         console.log(this.props)
         console.log(`!!!!Comp did MOUNT in Table!!!!`)      
-        axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
+        if(this.props.products) {
+            axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -43,6 +44,7 @@ class Table extends React.Component {
                 console.log(err.response);
                 console.log("err.response");
             })
+        }
     }
 
     componentDidUpdate() {
