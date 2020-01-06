@@ -21,8 +21,6 @@ class Table extends React.Component {
     }
 
     componentDidMount() {
-        console.log(`!!!!Comp did MOUNT in Table!!!!`)      
-        console.log(this.props)
         if(this.props.products) {
             axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
             {
@@ -31,7 +29,6 @@ class Table extends React.Component {
                 }
             })
             .then(res => {
-                console.log(res.data)
                 store.dispatch(getProducts(res.data));
                 let totalPrice = 0;
                 for (let i = 0; i < res.data.length; i++) {
@@ -47,7 +44,6 @@ class Table extends React.Component {
 
     componentDidUpdate() {
         if (this.props.tableUpdated) {
-                console.log(`!!!!!!Comp did UPDATE in Table !!!!`)
                 axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
                     {
                         headers: {
@@ -65,7 +61,6 @@ class Table extends React.Component {
                
         }
     }
-
 
     hideAlert = () => {
         this.setState({ alertShow: false })
@@ -86,7 +81,6 @@ class Table extends React.Component {
                 }
             })
             .then(res => {
-                console.log(res)
                 store.dispatch(deleteProduct(product))
             })
             .catch(err => {
@@ -102,7 +96,6 @@ class Table extends React.Component {
     render() {
         let tableRow = null;
         if (this.props.products) {
-            console.log(this.props.products )
             tableRow = this.props.products.map(product => {
                 return (<TableRow key={product.name + Math.random()} name={product.name}
                     deleteProduct={() => this.deleteProductHandler(product)}

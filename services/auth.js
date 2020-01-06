@@ -27,15 +27,15 @@ app.use(
 
 //routes
 const authHandler = require('../handlers/authHandler')
-//const url = '/app/v1/auth/'
+const url = '/app/v1/auth/'
 
-app.post('/app/v1/auth/register', authHandler.register)
-app.post('/app/v1/auth/login', authHandler.login)
+app.post(url + 'register', authHandler.register)
+app.post(url + 'login', authHandler.login)
 
 app.listen(8081, (err) => {
     if(err) {
         console.log(err);
         return
     }
-    console.log("Auth Server has started successfully on port 8081")
+    console.log("Auth server has started successfully on port 8081")
 })

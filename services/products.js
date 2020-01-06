@@ -24,18 +24,18 @@ app.use(                                                       //sekoj req ke po
 );
 
 //routes and methods
-//const url = '/app/v1/products/'
-app.get('/app/v1/products/', productHandler.getAllProducts);
-app.get('/app/v1/products/:id', productHandler.getOne);
-app.post('/app/v1/products/', productHandler.saveProduct);
-app.put('/app/v1/products/:id', productHandler.replaceProduct);
-app.patch('/app/v1/products/:id', productHandler.updateProduct);
-app.delete('/app/v1/products/:id', productHandler.deleteProduct);
+const url = '/app/v1/products/'
+app.get(url, productHandler.getAllProducts);
+app.get(url + ':id', productHandler.getOne);
+app.post(url, productHandler.saveProduct);
+app.put(url + ':id', productHandler.replaceProduct);
+app.patch(url + ':id', productHandler.updateProduct);
+app.delete(url + ':id', productHandler.deleteProduct);
 
 app.listen(8080, (err) => {
     if(err) {
         console.log(err)
         return
     }
-    console.log("Products Server has started successfully on port 8080");
+    console.log("Products server has started successfully on port 8080");
 })

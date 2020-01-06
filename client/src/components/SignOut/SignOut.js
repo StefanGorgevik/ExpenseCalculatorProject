@@ -5,7 +5,7 @@ const signOut = (props) => {
 
 
     return (
-        <div id="alert">
+        <div id="alert sign-out">
         <div id="alert-container">
             <div id="alert-text-container">
                 <h1>You are signing out</h1>

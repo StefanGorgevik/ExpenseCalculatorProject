@@ -38,7 +38,6 @@ class Register extends React.Component {
                 } else if(this.state.first_name !== null && this.state.last_name !== null &&
                         this.state.email !== null && this.state.date_of_birth !== null &&
                         this.state.telephone !== null && this.state.country !== null && this.state.password !== null) {
-                        console.log("Entered else")
                         event.preventDefault()
                         axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/register', {
                                 first_name: this.state.first_name,
@@ -57,7 +56,6 @@ class Register extends React.Component {
                                                         password: this.state.password
                                                 })
                                                 .then(res => {
-                                                        console.log("RESPONSE STARTED")
                                                         this.setState({ signed: true })
                                                         localStorage.setItem('jwt', res.data.jwt);
                                                         localStorage.setItem('first_name', this.state.first_name);

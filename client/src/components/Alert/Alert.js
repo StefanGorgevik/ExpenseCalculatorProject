@@ -3,7 +3,7 @@ import '../../assets/styles/Pop-up.css'
 
 const alert = (props) => {
     return (
-        <div id="alert">
+        <div id="alert" className='delete'>
         <div id="alert-container">
             <div id="alert-text-container">
                 <h1>Delete Product</h1>

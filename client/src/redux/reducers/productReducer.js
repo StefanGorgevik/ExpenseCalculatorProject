@@ -14,12 +14,14 @@ export function productReducer(state = initState, action) {
                 ...state, products: action.payload
             }
         }
+        
         case "DELETE_PRODUCT": {
             let newProducts = state.products.filter(product => {
                 return action.payload._id !== product._id
             })
             return { ...state, products: newProducts }
         }
+
         case "GET_TOTAL_PRICE": {
             return { ...state, totalPrice: action.payload }
         }
@@ -31,12 +33,15 @@ export function productReducer(state = initState, action) {
         case "EDIT_PRODUCT_CLICKED": {
             return { ...state, editProductClicked: action.editProductClicked }
         }
+
         case "EXPENSES_CLICKED": {
             return { ...state, expensesClicked: action.expensesClicked }
         }
+
         case "TABLE_UPDATED": {
             return { ...state, tableUpdated: action.tableUpdated }
         }
+
         default:
             return state
     }
