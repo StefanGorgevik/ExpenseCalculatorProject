@@ -62,6 +62,7 @@ class Register extends React.Component {
                                                         localStorage.setItem('last_name', this.state.last_name);  
                                                 })
                                                 .catch(err => {
+                                                        
                                                         console.log(err)
                                                 });
                                 })
