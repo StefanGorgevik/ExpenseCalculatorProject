@@ -81,7 +81,7 @@ class Expenses extends React.Component {
     }
 
     monthlySelect = () => {
-        this.setState({ yearlyDisplay: false, monthlyDisplay: true, active: true, yearlySelected: null, filter: null })
+        this.setState({ yearlyDisplay: false, monthlyDisplay: true, active: true, yearlySelected: 'all', filter: null })
     }
 
     yearlySelectHandler = (event) => {
