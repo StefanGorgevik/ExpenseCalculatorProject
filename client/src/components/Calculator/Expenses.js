@@ -87,12 +87,12 @@ class Expenses extends React.Component {
     yearlySelectHandler = (event) => {
         this.setState({ yearlySelected: event.target.value })
     }
+
     monthlySelectHandler = (event) => {
         this.setState({ filter: event.target.value })
     }
 
     render() {
-        
         let yearly =
             <select name="year-select" className="month-select" onChange={this.yearlySelectHandler}>
                 <option defaultChecked value='all' > ALL</option>
@@ -100,8 +100,6 @@ class Expenses extends React.Component {
                     return <option key={`year${index}`} value={year}>{year}</option>
                 })}
             </select>;
-
-        
 
         let monthly = (
             <select name="month-select" className="month-select select-box" onChange={this.monthlySelectHandler}>
