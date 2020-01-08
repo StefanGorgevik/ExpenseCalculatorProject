@@ -30,7 +30,7 @@ class Login extends React.Component {
             alert('Please fill the inputs correctly!')
         } else if (this.state.email !== null && this.state.password !== null) {
             event.preventDefault();
-        axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login',
+        axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login/',
             {
                 email: this.state.email,
                 password: this.state.password

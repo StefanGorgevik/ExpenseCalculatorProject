@@ -39,7 +39,7 @@ class Register extends React.Component {
                         this.state.email !== null && this.state.date_of_birth !== null &&
                         this.state.telephone !== null && this.state.country !== null && this.state.password !== null) {
                         event.preventDefault()
-                        axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/register', {
+                        axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/register/', {
                                 first_name: this.state.first_name,
                                 last_name: this.state.last_name,
                                 email: this.state.email,
@@ -50,7 +50,7 @@ class Register extends React.Component {
                                 _created: new Date(),
                         })
                                 .then(res => {
-                                        axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login',
+                                        axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login/',
                                                 {
                                                         email: this.state.email,
                                                         password: this.state.password
