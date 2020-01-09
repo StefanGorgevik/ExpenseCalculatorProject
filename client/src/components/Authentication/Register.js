@@ -50,6 +50,8 @@ class Register extends React.Component {
                                 _created: new Date(),
                         })
                                 .then(res => {
+                                        console.log("THEN")
+                                        console.log(res)
                                         axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login',
                                                 {
                                                         email: this.state.email,
