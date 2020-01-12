@@ -34,10 +34,10 @@ app.post(url + 'login', authHandler.login)
 app.post(url + 'user-info', authHandler.getUserInfo)
 app.put(url + 'user-info/:id', authHandler.updateUserInfo)
 
-app.listen(8006, (err) => {
+app.listen(8081, (err) => {
     if(err) {
         console.log(err);
         return
     }
-    console.log("Auth Server has started successfully on port 8006")
+    console.log("Auth Server has started successfully on port 8081")
 })
