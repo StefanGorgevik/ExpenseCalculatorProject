@@ -9,7 +9,6 @@ import store from '../../redux/store'
 import { deleteProduct, getProducts, editProduct, editProductClicked, getTotalPrice, tableUpdated } from '../../redux/actions/productAction'
 import axios from 'axios'
 
-
 class Table extends React.Component {
     constructor(props) {
         super(props);
@@ -23,22 +22,22 @@ class Table extends React.Component {
     componentDidMount() {
         if(this.props.products) {
             axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
-            {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-                }
-            })
-            .then(res => {
-                store.dispatch(getProducts(res.data));
-                let totalPrice = 0;
-                for (let i = 0; i < res.data.length; i++) {
-                    totalPrice += parseInt(res.data[i].price)
-                }
-                store.dispatch(getTotalPrice(totalPrice));
-            })
-            .catch(err => {
-                console.log(err);
-            })
+                {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                    }
+                })
+                .then(res => {
+                    store.dispatch(getProducts(res.data));
+                    let totalPrice = 0;
+                    for (let i = 0; i < res.data.length; i++) {
+                        totalPrice += parseInt(res.data[i].price)
+                    }
+                    store.dispatch(getTotalPrice(totalPrice));
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }
     }
 
@@ -70,6 +69,7 @@ class Table extends React.Component {
         const clicked = !this.state.editProductClicked
         store.dispatch(editProduct(product));
         store.dispatch(editProductClicked(clicked));
+
     }
 
     deleteProduct = (product, productID) => {
@@ -81,6 +81,7 @@ class Table extends React.Component {
                 }
             })
             .then(res => {
+                console.log(res)
                 store.dispatch(deleteProduct(product))
             })
             .catch(err => {
@@ -91,6 +92,7 @@ class Table extends React.Component {
     deleteProductHandler = (product) => {
         this.setState({ product: product })
         this.setState({ alertShow: true })
+
     }
 
     render() {

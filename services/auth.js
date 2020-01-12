@@ -16,7 +16,7 @@ app.use(cors())
 
 //jwt tokens
 var jwt = require('express-jwt');
-app.use(                                                       
+app.use(                                                       //sekoj req ke pomine niz ova i ke vrati req.user
     jwt(
         { secret: config.getConfig('jwt').key }
     )
@@ -31,11 +31,13 @@ const url = '/app/v1/auth/'
 
 app.post(url + 'register', authHandler.register)
 app.post(url + 'login', authHandler.login)
+app.post(url + 'user-info', authHandler.getUserInfo)
+app.put(url + 'user-info/:id', authHandler.updateUserInfo)
 
-app.listen(8081, (err) => {
+app.listen(8006, (err) => {
     if(err) {
         console.log(err);
         return
     }
-    console.log("Auth server has started successfully on port 8081")
+    console.log("Auth Server has started successfully on port 8006")
 })

@@ -34,8 +34,7 @@
 #edit-button,
 #delete-button {
     background-color: inherit;
-    border: none;
-    
+    border: none;  
 }
 
 .Table i .far .fa-edit {

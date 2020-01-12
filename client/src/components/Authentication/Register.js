@@ -1,9 +1,10 @@
 import React from 'react'
-import '../../assets/styles/inputs-shared.css'
+import '../../assets/styles/Authentication.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import { Redirect } from 'react-router-dom'
+
 
 class Register extends React.Component {
         constructor(props) {
@@ -38,6 +39,7 @@ class Register extends React.Component {
                 } else if(this.state.first_name !== null && this.state.last_name !== null &&
                         this.state.email !== null && this.state.date_of_birth !== null &&
                         this.state.telephone !== null && this.state.country !== null && this.state.password !== null) {
+                        console.log("Entered else")
                         event.preventDefault()
                         axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/register', {
                                 first_name: this.state.first_name,
@@ -50,21 +52,19 @@ class Register extends React.Component {
                                 _created: new Date(),
                         })
                                 .then(res => {
-                                        console.log("THEN")
-                                        console.log(res)
                                         axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login',
                                                 {
                                                         email: this.state.email,
                                                         password: this.state.password
                                                 })
                                                 .then(res => {
-                                                        this.setState({ signed: true })
                                                         localStorage.setItem('jwt', res.data.jwt);
-                                                        localStorage.setItem('first_name', this.state.first_name);
-                                                        localStorage.setItem('last_name', this.state.last_name);  
+                                                        localStorage.setItem('email', res.data.email);
+                                                        localStorage.setItem('first_name', res.data.first_name);
+                                                        localStorage.setItem('last_name', res.data.last_name);
+                                                        this.setState({ signed: true })
                                                 })
                                                 .catch(err => {
-                                                        
                                                         console.log(err)
                                                 });
                                 })
@@ -73,7 +73,6 @@ class Register extends React.Component {
                                 })
                 }
         }
-
 
         render() {
                 return (

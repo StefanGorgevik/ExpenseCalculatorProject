@@ -4,10 +4,11 @@ const initState = {
     productToEdit: '',
     editProductClicked: '',
     expensesClicked: false,
-    tableUpdated: false
+    tableUpdated: false,
+    nameUpdated: null
 }
 
-export function productReducer(state = initState, action) {
+export function reducer(state = initState, action) {
     switch (action.type) {
         case "GET_PRODUCTS": {
             return {
@@ -40,6 +41,10 @@ export function productReducer(state = initState, action) {
 
         case "TABLE_UPDATED": {
             return { ...state, tableUpdated: action.tableUpdated }
+        }
+
+        case "NAME_UPDATED": {
+            return { ...state, nameUpdated: action.nameUpdated }
         }
 
         default:

@@ -24,7 +24,7 @@ class Expenses extends React.Component {
 
     componentDidUpdate() {
         if (this.state.yearlySelected === 'all') {
-            axios.get('https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc',
+            axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -53,11 +53,9 @@ class Expenses extends React.Component {
             var monthNum;
             for(let i = 0; i < this.months.length; i++) {
                 if(this.state.filter === this.months[i]) {
+                    monthNum = i + 1;
                     if(i.toString().length === 1) {
-                        monthNum = i + 1;
                         monthNum = "0" + monthNum.toString();;
-                    }  else {
-                        monthNum = i + 1;
                     }
                 }
             }
@@ -87,12 +85,12 @@ class Expenses extends React.Component {
     yearlySelectHandler = (event) => {
         this.setState({ yearlySelected: event.target.value })
     }
-
     monthlySelectHandler = (event) => {
         this.setState({ filter: event.target.value })
     }
 
     render() {
+        
         let yearly =
             <select name="year-select" className="month-select" onChange={this.yearlySelectHandler}>
                 <option defaultChecked value='all' > ALL</option>
@@ -100,6 +98,8 @@ class Expenses extends React.Component {
                     return <option key={`year${index}`} value={year}>{year}</option>
                 })}
             </select>;
+
+        
 
         let monthly = (
             <select name="month-select" className="month-select select-box" onChange={this.monthlySelectHandler}>

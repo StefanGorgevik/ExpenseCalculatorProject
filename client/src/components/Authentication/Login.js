@@ -1,9 +1,8 @@
 import React from 'react'
-import '../../assets/styles/inputs-shared.css'
+import '../../assets/styles/Authentication.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-
 class Login extends React.Component {
     constructor(props) {
         super(props)
@@ -25,11 +24,7 @@ class Login extends React.Component {
     }
 
     signIn = (event) => {
-        if(this.state.email === null || this.state.password === null ) {
-            event.preventDefault();
-            alert('Please fill the inputs correctly!')
-        } else if (this.state.email !== null && this.state.password !== null) {
-            event.preventDefault();
+        event.preventDefault();
         axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login',
             {
                 email: this.state.email,
@@ -37,6 +32,7 @@ class Login extends React.Component {
             })
             .then(res => {
                 localStorage.setItem('jwt', res.data.jwt);
+                localStorage.setItem('email', res.data.email);
                 localStorage.setItem('first_name', res.data.first_name);
                 localStorage.setItem('last_name', res.data.last_name);
                 this.setState({ signed: true })
@@ -44,8 +40,6 @@ class Login extends React.Component {
             .catch(err => {
                 console.log(err)
             });
-        }
-        
     }
 
     render() {

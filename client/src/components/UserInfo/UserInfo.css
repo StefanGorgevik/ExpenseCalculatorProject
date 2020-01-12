@@ -1,0 +1,98 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color:#E5EDF5;
+    overflow-x: hidden;
+}
+
+.user-info-main {
+    display: flex;
+    width: 1020px;
+    max-height: 900px;
+    margin: auto;
+    margin-left: 200px;
+    margin-bottom: 10px;
+}
+
+.user-info-div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+    margin:auto;
+    background-color: #fff;
+    padding: 0;
+    height: 70%;
+    width: 570px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.user-form-box {
+    display: block;
+    margin-left: 50px;
+}
+
+.infos {
+    background-color: #fff;
+    border-radius: 10px;
+    width: 40%;
+    align-items: center;
+}
+
+.val-input { 
+    background: #fff;
+    border: 1.5px solid #c6c6c6;
+    height: 34px;
+    border-radius: 5px;
+    font-size: 17px;
+    margin-bottom: 8.5px;
+    color: #8d8d8d;
+}
+
+.save-btn {
+    font-size: 15px; 
+    color: #fff;
+    background: #1DD1A1; 
+    height: 45px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.17);
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    margin-bottom: 19px;
+    margin-top: 20px;
+    border: none;
+    text-transform: uppercase;
+}
+
+.val-input,
+.save-btn {
+    width: 330px;
+}
+
+.text-field,
+.val-label {
+    display: block;
+}
+
+.val-label {
+    font-size: 17px;
+    margin-bottom: 8.5px;
+    color: #8d8d8d;
+}
+
+.general-h3 {
+    margin-left: 200px;
+    margin-bottom: 40px;
+    margin-top: 25px;
+}
+
+.address-p {
+    display: flex;
+}
+
+#addressCheckbox {
+    height: 20px;
+    width: 20px;
+}

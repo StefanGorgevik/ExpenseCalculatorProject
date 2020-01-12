@@ -1,5 +1,5 @@
 import React from 'react'
-import './New-product.css'
+import './Product.css'
 
 import { tableUpdated } from '../../redux/actions/productAction'
 import store from '../../redux/store'
@@ -24,30 +24,31 @@ class NewProduct extends React.Component {
     }
 
     createProduct = (event) => {
-        if (this.state.name === '' || this.state.type === '' ||
-            this.state.description === '' || this.state.date === '' || this.state.price === '') {
+        console.log(this.state)
+        if (this.state.name == '' || this.state.type == '' ||
+            this.state.description == '' || this.state.date == '' || this.state.price == '') {
             event.preventDefault();
             alert('Fill out the fields correctly!')
         } else if (this.state.name !== '' || this.state.type !== '' ||
-            this.state.description !== '' || this.state.date !== '' || this.state.price !== '') {
+            this.state.description !== '' || this.state.date !== '' || this.state.price !== '') {   
             store.dispatch(tableUpdated(!this.state.tableUpdated))
-            axios.post('https://stark-island-29614.herokuapp.com/app/v1/products/',
+            axios.post('https://stark-island-29614.herokuapp.com/app/v1/products',
                 {
-                name: this.state.name,
-                type: this.state.type,
-                description: this.state.description,
-                date: this.state.date,
-                price: this.state.price,
-                _created: new Date()
-            },
-            {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                    name: this.state.name,
+                    type: this.state.type,
+                    description: this.state.description,
+                    date: this.state.date,
+                    price: this.state.price,
+                    _created: new Date()
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                    }
                 }
-            }
             )
-                .then(res => {})
-                .catch(err => console.log(err))
+                .then(res => console.log(res))
+                .catch(err => console.log(err.response))
         }
     }
 
@@ -67,15 +68,15 @@ class NewProduct extends React.Component {
                     price: this.state.price,
                     _modified: new Date()
                 }, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-                    }
-                })
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
+            })
                 .then(res => {
                     console.log(res)
                 })
                 .catch(err => {
-                    console.log(err.response)
+                    console.log(err)
                 })
         }
     }

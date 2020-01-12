@@ -10,7 +10,8 @@ const User = mongoose.model(
         date_of_birth: Date,
         telephone: String,
         country: String,
-        _created: { type: Date, default: Date.now}
+        _created: { type: Date, default: Date.now},
+        _address: String
     })
 )
 
@@ -38,7 +39,31 @@ const login = (email) => {
     })
 }
 
+const getUser = (email) => {
+    return new Promise ((success, fail) => {
+        User.find({email: email}, (err, data) => {
+            if(err) {
+                return fail(err);
+            }
+            return success(data)
+        })
+    })
+}
+
+const updateUser = (id, data) => {
+    return new Promise((success, fail) => {
+        User.updateOne({ _id: id }, data, err => {
+            if (err) {
+                return fail(err)
+            }
+            return success(data)
+        })
+    })
+}
+
 module.exports = {
     register,
-    login
+    login,
+    getUser,
+    updateUser
 }

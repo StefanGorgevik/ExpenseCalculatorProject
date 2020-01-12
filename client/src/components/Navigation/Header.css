@@ -57,6 +57,7 @@ span,p {
 .right-side a {
     text-decoration: none;
     color: inherit;
+
 }
 
 #profile-image {
@@ -65,5 +66,14 @@ span,p {
 }
 
 .sign-out {
-    margin-left: 30px;
+    margin-left: 20px;
+}
+.user-info {
+    margin-left: 20px;
+}
+
+#name-p {
+    padding-right: 5px;
+    border-right: 1px solid black;
+    margin-right: 0;
 }

@@ -40,6 +40,7 @@ class Products extends React.Component {
 
     filterHandler = (event) => {
         this.setState({ filterOption: event.target.value })
+
     }
 
     render() {
