@@ -66,7 +66,7 @@ class Header extends React.Component {
                             <Link to='/expenses'><button className={this.state.active ? 'active-btn main-buttons' : 'main-buttons'} onClick={this.expensesClicked}>Expenses</button></Link>
                         </div>
                         <div className="right-side">
-                            <img id="profile-image" src="../../assets/images/small_profile.png" alt="profile-image" />
+                            <img id="profile-image" src="../../assets/images/small_profile.png" />
                             <p id='name-p'>{this.state.name}</p>
                             <p className="user-info"><Link to='/user-info'>Your Info</Link></p>
                             <p className="sign-out"><Link to='#' onClick={this.signOutClicked}>Sign Out</Link></p>
