@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom'
 import { expensesClicked } from '../../redux/actions/productAction'
 import store from '../../redux/store'
 import SignOut from '../SignOut/SignOut'
-import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { nameUpdated } from '../../redux/actions/userAction'
 class Header extends React.Component {
     constructor(props) {
         super(props)
@@ -20,24 +18,15 @@ class Header extends React.Component {
             name: localStorage.getItem('first_name') + ' ' + localStorage.getItem('last_name')
         }
     }
-    componentDidUpdate(prevProps, prevState) {
-        console.log(prevProps, prevState)
-        if (this.state.nameUpdated) {
-                console.log("gg")
-                this.setState({ name: localStorage.getItem('first_name') + ' ' + localStorage.getItem('last_name') })    
-        } 
-    }
 
     expensesClicked = () => {
-        this.setState({ active: true, expensesClicked: true })
-        const clicked = !this.state.expensesClicked
-        store.dispatch(expensesClicked(clicked))
+        this.setState({ active: true })
+        store.dispatch(expensesClicked( !this.state.expensesClicked))
     }
 
     productsClicked = () => {
         this.setState({ active: false, expensesClicked: false })
-        const clicked = this.state.expensesClicked
-        store.dispatch(expensesClicked(clicked))
+        store.dispatch(expensesClicked( this.state.expensesClicked))
     }
 
     signOutClicked = () => {
@@ -62,11 +51,11 @@ class Header extends React.Component {
                 <header>
                     <nav className="nav">
                         <div className="buttons">
-                            <Link to='/products'><button className={!this.state.active ? 'active-btn main-buttons' : 'main-buttons'} onClick={this.productsClicked}>Products</button></Link>
-                            <Link to='/expenses'><button className={this.state.active ? 'active-btn main-buttons' : 'main-buttons'} onClick={this.expensesClicked}>Expenses</button></Link>
+                            <Link to='/products'><button className={!this.state.active ? 'main-buttons active-btn' : 'main-buttons'} onClick={this.productsClicked}>Products</button></Link>
+                            <Link to='/expenses'><button className={this.state.active ? ' main-buttons active-btn' : 'main-buttons'} onClick={this.expensesClicked}>Expenses</button></Link>
                         </div>
                         <div className="right-side">
-                            <img id="profile-image" src="../../assets/images/small_profile.png" alt="" role="profile" />
+                            <img id="profile-image" src="../../assets/images/small_profile.png" alt="profile-image" />
                             <p id='name-p'>{this.state.name}</p>
                             <p className="user-info"><Link to='/user-info'>Your Info</Link></p>
                             <p className="sign-out"><Link to='#' onClick={this.signOutClicked}>Sign Out</Link></p>
@@ -81,11 +70,4 @@ class Header extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        nameUpdated: state.nameUpdated
-    }
-}
-
-
-export default connect(mapStateToProps)(Header)
+ export default Header

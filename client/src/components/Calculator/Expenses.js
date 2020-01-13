@@ -36,7 +36,7 @@ class Expenses extends React.Component {
                 .catch(err => {
                     console.log(err);
                 })
-        } else if (this.state.yearlySelected != null && this.state.yearlySelected.length === 4 && !this.state.monthlyDisplay ) {
+        } else if (this.state.yearlySelected != null && this.state.yearlySelected.length === 4 && !this.state.monthlyDisplay) {
             let dateFrom = new Date(`${this.state.yearlySelected}-01-01 00:00:00.000`).getTime()
             let dateTo = new Date(`${this.state.yearlySelected}-12-31 23:59:59.000`).getTime()
             axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products/?date_from=${dateFrom}&date_to=${dateTo}`,
@@ -51,10 +51,10 @@ class Expenses extends React.Component {
                 .catch(err => console.log(err));
         } else if (this.state.filter != null && this.state.yearlySelected != null && this.state.monthlyDisplay) {
             var monthNum;
-            for(let i = 0; i < this.months.length; i++) {
-                if(this.state.filter === this.months[i]) {
+            for (let i = 0; i < this.months.length; i++) {
+                if (this.state.filter === this.months[i]) {
                     monthNum = i + 1;
-                    if(i.toString().length === 1) {
+                    if (i.toString().length === 1) {
                         monthNum = "0" + monthNum.toString();;
                     }
                 }
@@ -75,7 +75,7 @@ class Expenses extends React.Component {
     }
 
     yearlySelect = () => {
-        this.setState({ monthlyDisplay: false, yearlyDisplay: true, active: false, yearlySelected: 'all', filter: null})
+        this.setState({ monthlyDisplay: false, yearlyDisplay: true, active: false, yearlySelected: 'all', filter: null })
     }
 
     monthlySelect = () => {
@@ -90,7 +90,7 @@ class Expenses extends React.Component {
     }
 
     render() {
-        
+
         let yearly =
             <select name="year-select" className="month-select" onChange={this.yearlySelectHandler}>
                 <option defaultChecked value='all' > ALL</option>
@@ -99,19 +99,20 @@ class Expenses extends React.Component {
                 })}
             </select>;
 
-        
+
 
         let monthly = (
             <select name="month-select" className="month-select select-box" onChange={this.monthlySelectHandler}>
+                <option defaultChecked>Month</option>
                 {this.months.map((month, index) => {
                     return <option key={`month${index}`} value={month}>{month}</option>
                 })}
             </select>)
-        
+
         let yearMonthly = (
             <div className="yearMonthly-div">
-            {monthly}
-            {yearly}
+                {monthly}
+                {yearly}
             </div>
         )
         return (
@@ -122,7 +123,7 @@ class Expenses extends React.Component {
                     <Link to="#"><button className={!this.state.active ? 'active-btn select-btn' : 'select-btn'} onClick={this.yearlySelect}>Yearly</button></Link>
                     <Link to="#"><button className={this.state.active ? 'active-btn select-btn' : 'select-btn'} onClick={this.monthlySelect}>Monthly</button></Link>
                     <div className="select-div">
-                        {this.state.monthlyDisplay ? <label htmlFor="month-select">Choose month and year:</label> : <label htmlFor="year-select">Choose year:</label>   }
+                        {this.state.monthlyDisplay ? <label htmlFor="month-select">Choose month and year:</label> : <label htmlFor="year-select">Choose year:</label>}
                         {this.state.monthlyDisplay ? yearMonthly : yearly}
                     </div>
                 </div>

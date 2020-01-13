@@ -13,6 +13,10 @@ class Login extends React.Component {
         }
     }
 
+    componentDidMount() {
+        localStorage.clear()
+    }
+
     saveLoginData = (event) => {
         this.setState({ [event.target.id]: event.target.value })
     }
@@ -24,6 +28,7 @@ class Login extends React.Component {
     }
 
     signIn = (event) => {
+        localStorage.clear()
         event.preventDefault();
         axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login',
             {
