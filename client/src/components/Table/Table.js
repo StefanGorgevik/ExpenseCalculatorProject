@@ -128,7 +128,7 @@ class Table extends React.Component {
                                 <th>Product Description</th>
                                 <th>Purchase Date</th>
                                 <th>Product Price</th>
-                                {this.props.expensesClicked ? null : <th>Product Options</th>}
+                                {!this.props.expensesClicked ? <th>Product Options</th> : null }
                             </tr>
 
                         </thead>
