@@ -57,7 +57,6 @@ class Table extends React.Component {
                     .catch(err => {
                         console.log(err);
                     })
-               
         }
     }
 
@@ -130,7 +129,6 @@ class Table extends React.Component {
                                 <th>Product Price</th>
                                 {!this.props.expensesClicked ? <th>Product Options</th> : null }
                             </tr>
-
                         </thead>
                         <tbody>
                             <tr>
