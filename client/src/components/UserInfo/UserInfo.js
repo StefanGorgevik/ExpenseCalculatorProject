@@ -24,7 +24,6 @@ class UserInfo extends React.Component {
 
     saveUserInfo = (event) => {
         this.setState({ [event.target.id]: event.target.value})
-        console.log(this.state.address)
     }
 
     checkboxClickedHandler = (event) => {
