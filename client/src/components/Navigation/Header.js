@@ -1,6 +1,6 @@
 import React from 'react'
 import './Header.css'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 import { expensesClicked } from '../../redux/actions/productAction'
 import store from '../../redux/store'
@@ -24,7 +24,6 @@ class Header extends React.Component {
     }
 
     productsClicked = () => {
-        this.setState({ expensesClicked: false })
         store.dispatch(expensesClicked( this.state.expensesClicked))
     }
 
