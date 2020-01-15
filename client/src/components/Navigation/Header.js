@@ -6,11 +6,11 @@ import { expensesClicked } from '../../redux/actions/productAction'
 import store from '../../redux/store'
 import SignOut from '../SignOut/SignOut'
 import { Redirect } from 'react-router-dom'
+import Profile from '../../assets/images/small_profile.png'
 class Header extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            active: false,
             expensesClicked: false,
             signOut: false,
             signOutClicked: false,
@@ -20,12 +20,11 @@ class Header extends React.Component {
     }
 
     expensesClicked = () => {
-        this.setState({ active: true })
         store.dispatch(expensesClicked( !this.state.expensesClicked))
     }
 
     productsClicked = () => {
-        this.setState({ active: false, expensesClicked: false })
+        this.setState({ expensesClicked: false })
         store.dispatch(expensesClicked( this.state.expensesClicked))
     }
 
@@ -44,18 +43,17 @@ class Header extends React.Component {
     }
 
     render() {
-       
         return (
             <React.Fragment>
                 {!localStorage.getItem('jwt') ? <Redirect to='/' /> : null}
                 <header>
                     <nav className="nav">
-                        <div className="buttons">
-                            <Link to='/products'><button className={!this.state.active ? 'main-buttons active-btn' : 'main-buttons'} onClick={this.productsClicked}>Products</button></Link>
-                            <Link to='/expenses'><button className={this.state.active ? ' main-buttons active-btn' : 'main-buttons'} onClick={this.expensesClicked}>Expenses</button></Link>
+                    <div className="buttons">
+                            <NavLink to='/products' className='btn-links' onClick={this.productsClicked}> Products</NavLink>
+                            <NavLink to='/expenses' className='btn-links' onClick={this.expensesClicked}> Expenses</NavLink>
                         </div>
                         <div className="right-side">
-                            <img id="profile-image" src="../../assets/images/small_profile.png" alt="profile-image" />
+                            <img id="profile-image" src={Profile} alt="profile-image" />
                             <p id='name-p'>{this.state.name}</p>
                             <p className="user-info"><Link to='/user-info'>Your Info</Link></p>
                             <p className="sign-out"><Link to='#' onClick={this.signOutClicked}>Sign Out</Link></p>
