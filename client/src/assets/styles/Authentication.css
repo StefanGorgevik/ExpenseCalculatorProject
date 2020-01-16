@@ -80,3 +80,7 @@ button {
     height: 730px;
 }
 
+.error-p {
+    color: #8d8d8d;
+    font-weight: bold;
+}

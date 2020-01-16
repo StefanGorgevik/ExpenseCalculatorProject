@@ -9,7 +9,8 @@ class Login extends React.Component {
         this.state = {
             email: null,
             password: null,
-            signed: false
+            signed: false,
+            error: null
         }
     }
 
@@ -40,9 +41,10 @@ class Login extends React.Component {
                 localStorage.setItem('email', res.data.email);
                 localStorage.setItem('first_name', res.data.first_name);
                 localStorage.setItem('last_name', res.data.last_name);
-                this.setState({ signed: true })
+                this.setState({ signed: true, error: false })
             })
             .catch(err => {
+                this.setState({ error: true})
                 console.log(err)
             });
     }
@@ -62,6 +64,7 @@ class Login extends React.Component {
                                 <label className="text-field-input" htmlFor="password">Password</label>
                                 <input onChange={this.saveLoginData} className="text-field" type="password" name="password" id="password" />
                             </p>
+                            {this.state.error ? <p className="error-p">Wrong email or password!</p> : null}
                             <button className="primary-btn" type="submit" onClick={this.signIn}>Sign in</button>
                         </form>
                     </div>
