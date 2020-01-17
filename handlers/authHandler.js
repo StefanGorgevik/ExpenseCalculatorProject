@@ -9,32 +9,42 @@ const register = (req, res) => {
     const newUser = req.body;
     var validate = new validator.Validator(newUser, userValidator.createUser)
     validate.check()
-    .then(matched => {
-        if(matched) {
-            bcrypt.genSalt(10, function(err, salt) {
-                if(err) {
-                    throw new Error(err);
-                    return;
-                }
-                bcrypt.hash(newUser.password, salt, function(err, hash) {
-                    if(err) {
+        .then(matched => {
+            if (matched) {
+                return authModel.getUser(newUser.email)
+                    .then((ed) => {
+                        if (!ed) {
+                            bcrypt.genSalt(10, function (err, salt) {
+                                if (err) {
+                                    throw new Error(err);
+                                    return;
+                                }
+                                bcrypt.hash(newUser.password, salt, function (err, hash) {
+                                    if (err) {
+                                        throw new Error(err);
+                                        return;
+                                    }
+                                    return authModel.register({ ...newUser, password: hash })
+                                })
+                            })
+                        } else {
+                            throw new Error('Bad Request - User Exists');
+                        }
+                    })
+                    .catch(err => {
                         throw new Error(err);
-                        return;
-                    }
-                    return authModel.register({...newUser, password: hash})
-                })
-            })
-        } else {
-            throw new Error("Validation failed!");
-        }
-    })
-    .then(() => {
-        return res.status(201).send("OK");
-    })
-    .catch(err => {
-        console.log(err);
-        return res.status(500).send(validate.errors);
-    })
+                    });
+            } else {
+                throw new Error("Validation failed!");
+            }
+        })
+        .then(() => {
+            return res.status(201).send("OK");
+        })
+        .catch(err => {
+            console.log(err);
+            return res.status(500).send(validate.errors);
+        })
 }
 
 const login = (req, res) => {
