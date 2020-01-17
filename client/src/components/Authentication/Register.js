@@ -19,8 +19,7 @@ class Register extends React.Component {
                         telephone: null,
                         country: null,
                         password: null,
-                        signed: false,
-                        error: null
+                        signed: false
                 }
         }
 
@@ -77,8 +76,6 @@ class Register extends React.Component {
                                                 });
                                 })
                                 .catch(err => {
-                                        this.setState({ error: true })
-                                        setTimeout(function() {window.location.reload()} , 3000)
                                         console.log(err)
                                 })
                 }
@@ -119,7 +116,6 @@ class Register extends React.Component {
                                                         <label className="text-field-input" htmlFor="password">Password</label>
                                                         <input onChange={this.saveUserToState} className="text-field" type="password" name="password" id="password" />
                                                 </p>                                                
-                                                {this.state.error ? <p className="error-p">User exists! Change email! Page will reload!</p> : null}
                                                 <button className="primary-btn" type="submit" onClick={this.saveUser}>Register</button>
                                         </form>
                                 </div>
