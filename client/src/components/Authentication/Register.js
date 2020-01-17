@@ -119,7 +119,7 @@ class Register extends React.Component {
                                                         <label className="text-field-input" htmlFor="password">Password</label>
                                                         <input onChange={this.saveUserToState} className="text-field" type="password" name="password" id="password" />
                                                 </p>                                                
-                                                {this.state.error ? <p>User exists! Change email! Page will reload!</p> : null}
+                                                {this.state.error ? <p className="error-p">User exists! Change email! Page will reload!</p> : null}
                                                 <button className="primary-btn" type="submit" onClick={this.saveUser}>Register</button>
                                         </form>
                                 </div>
