@@ -30,7 +30,7 @@ class Register extends React.Component {
         }
 
         redirectToMain = () => {
-                if(this.state.signed) {
+                if (this.state.signed) {
                         return <Redirect to='/products' />
                 }
         }
@@ -41,7 +41,7 @@ class Register extends React.Component {
                         this.state.telephone == null || this.state.country == null || this.state.password == null) {
                         event.preventDefault()
                         alert('Please input correct data!')
-                } else if(this.state.first_name !== null && this.state.last_name !== null &&
+                } else if (this.state.first_name !== null && this.state.last_name !== null &&
                         this.state.email !== null && this.state.date_of_birth !== null &&
                         this.state.telephone !== null && this.state.country !== null && this.state.password !== null) {
                         event.preventDefault()
@@ -57,22 +57,24 @@ class Register extends React.Component {
                         })
                                 .then(res => {
                                         localStorage.clear()
-                                        axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login',
-                                                {
-                                                        email: this.state.email,
-                                                        password: this.state.password
-                                                })
-                                                .then(res => {
-                                                        localStorage.setItem('jwt', res.data.jwt);
-                                                        localStorage.setItem('email', res.data.email);
-                                                        localStorage.setItem('first_name', res.data.first_name);
-                                                        localStorage.setItem('last_name', res.data.last_name);
-                                                        this.setState({ signed: true })
-                                                })
-                                                .catch(err => {
-                                                        console.log(err)
-                                                });
-                                })
+                                        setTimeout(() => {
+                                                axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login',
+                                                        {
+                                                                email: this.state.email,
+                                                                password: this.state.password
+                                                        })
+                                                        .then(res => {
+                                                                localStorage.setItem('jwt', res.data.jwt);
+                                                                localStorage.setItem('email', res.data.email);
+                                                                localStorage.setItem('first_name', res.data.first_name);
+                                                                localStorage.setItem('last_name', res.data.last_name);
+                                                                this.setState({ signed: true })
+                                                        })
+                                                        .catch(err => {
+                                                                console.log(err)
+                                                        });
+                                                }, 1000)
+                                        }) 
                                 .catch(err => {
                                         console.log(err)
                                 })
