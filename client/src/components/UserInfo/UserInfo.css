@@ -16,7 +16,7 @@ html, body {
     margin-bottom: 10px;
 }
 
-.user-info-div{
+.user-form-box{
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -25,12 +25,13 @@ html, body {
     background-color: #fff;
     padding: 0;
     height: 70%;
-    width: 570px;
+    width: 770px;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    
 }
-.user-form-box {
-    display: block;
+
+.user-info-div form {
     margin-left: 50px;
 }
 
@@ -95,4 +96,30 @@ html, body {
 #addressCheckbox {
     height: 20px;
     width: 20px;
+}
+
+.user-info-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items:center;
+    background-color: #e9e7e7;
+    text-align: center;
+    color:#9a9a9a;
+    width: 650px;
+    height: 67.5vh;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.user-info-div span i{
+    font-size: 50px;
+    color: #9a9a9a;
+}
+.user-info-div h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
 }

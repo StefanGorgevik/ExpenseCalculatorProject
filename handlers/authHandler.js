@@ -47,7 +47,7 @@ const login = (req, res) => {
             if(result) {
                 var tokenData = {
                     id: data._id,
-                    full_name: `${data.first_name} ${data.first_name}`,
+                    full_name: `${data.first_name} ${data.last_name}`,
                     email: data.email
                 }
                 var token = jwt.sign(tokenData, config.getConfig('jwt').key)

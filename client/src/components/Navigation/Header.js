@@ -1,12 +1,13 @@
 import React from 'react'
 import './Header.css'
-import { NavLink, Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { expensesClicked } from '../../redux/actions/productAction'
 import store from '../../redux/store'
 import SignOut from '../SignOut/SignOut'
 import { Redirect } from 'react-router-dom'
 import Profile from '../../assets/images/small_profile.png'
+import { connect } from 'react-redux'
 class Header extends React.Component {
     constructor(props) {
         super(props)
@@ -14,17 +15,21 @@ class Header extends React.Component {
             expensesClicked: false,
             signOut: false,
             signOutClicked: false,
-            nameUpdated: false,
-            name: localStorage.getItem('first_name') + ' ' + localStorage.getItem('last_name')
+            name: this.props.userName
         }
     }
 
+    componentDidMount() {
+        const user = localStorage.getItem('first_name') + ' ' + localStorage.getItem('last_name');
+        this.setState({name: user})
+    }
+
     expensesClicked = () => {
-        store.dispatch(expensesClicked( !this.state.expensesClicked))
+        store.dispatch(expensesClicked(!this.state.expensesClicked))
     }
 
     productsClicked = () => {
-        store.dispatch(expensesClicked( this.state.expensesClicked))
+        store.dispatch(expensesClicked(this.state.expensesClicked))
     }
 
     signOutClicked = () => {
@@ -37,9 +42,9 @@ class Header extends React.Component {
 
     signOutAccepted = () => {
         localStorage.clear()
-        localStorage.removeItem('jwt')
         this.setState({ signOut: true })
     }
+    
 
     render() {
         return (
@@ -47,12 +52,12 @@ class Header extends React.Component {
                 {!localStorage.getItem('jwt') ? <Redirect to='/' /> : null}
                 <header>
                     <nav className="nav">
-                    <div className="buttons">
+                        <div className="buttons">
                             <NavLink to='/products' className='btn-links' onClick={this.productsClicked}> Products</NavLink>
                             <NavLink to='/expenses' className='btn-links' onClick={this.expensesClicked}> Expenses</NavLink>
                         </div>
                         <div className="right-side">
-                            <img id="profile-image" src={Profile} alt="profile-image" />
+                            <img id="profile-image" src={Profile} alt="profile" />
                             <p id='name-p'>{this.state.name}</p>
                             <p className="user-info"><Link to='/user-info'>Your Info</Link></p>
                             <p className="sign-out"><Link to='#' onClick={this.signOutClicked}>Sign Out</Link></p>
@@ -66,5 +71,10 @@ class Header extends React.Component {
         )
     }
 }
+function mapStateToProps(state) {
+    return {
+        userName: state.userName
+    }
+}
 
- export default Header
+export default connect(mapStateToProps)(Header)

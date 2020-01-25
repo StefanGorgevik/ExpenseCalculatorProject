@@ -3,7 +3,7 @@ import './UserInfo.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
-import { nameUpdated } from '../../redux/actions/userAction'
+import { saveUserName } from '../../redux/actions/userAction'
 import store from '../../redux/store'
 
 class UserInfo extends React.Component {
@@ -18,7 +18,8 @@ class UserInfo extends React.Component {
             telephone: '',
             id: '',
             addressCheckbox: false,
-            address: ''
+            address: '',
+            redirect: false
         }
     }
 
@@ -31,7 +32,7 @@ class UserInfo extends React.Component {
     }
 
     componentDidMount() {
-        axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/user-info',
+        axios.post('http://127.0.0.1:8006/app/v1/auth/user-info',
             {
                 email: localStorage.getItem('email')
             },
@@ -57,13 +58,15 @@ class UserInfo extends React.Component {
             })
     }
 
+  
+
     updateUserInfo = (event) => {
         if (this.state.first_name.length === 0 && this.state.last_name.length === 0 &&
             this.state.email.length === 0 && this.state.birthday.length === 0 && this.state.country.length === 0 && this.state.telephone.length === 0) {
             alert('Please fill the fields!')
             event.preventDefault()
         } else {
-            axios.put(`https://stark-island-29614.herokuapp.com/app/v1/auth/user-info/${this.state.id}`, {
+            axios.put(`http://127.0.0.1:8006/app/v1/auth/user-info/${this.state.id}`, {
                 first_name: this.state.first_name,
                 last_name: this.state.last_name,
                 email: this.state.email,
@@ -79,11 +82,12 @@ class UserInfo extends React.Component {
                 }
             )
                 .then(res => {
+                    this.setState({redirect : true})
                     localStorage.setItem('email', this.state.email)
                     localStorage.setItem('first_name', this.state.first_name)
                     localStorage.setItem('last_name', this.state.last_name)
-                    store.dispatch(nameUpdated(true))
-                    //window.location.reload()
+                    const name = this.state.first_name + ' ' + this.state.last_name
+                    store.dispatch(saveUserName(name))
                 })
                 .catch((err) => {
                     console.log(err);
@@ -97,7 +101,6 @@ class UserInfo extends React.Component {
                 <this.props.header />
                 <h3 className="general-h3">General Account Settings</h3>
                 <main className="user-info-main">
-                    <div className="user-info-div">
                         <div className="user-form-box">
                             <form>
                                 <p className="input-container">
@@ -133,13 +136,12 @@ class UserInfo extends React.Component {
                                     <label htmlFor="address" className="val-label">Address: </label>
                                     <input onChange={this.saveUserInfo} defaultValue={this.state.address} className="val-input" type="text" name="address" id="address" />
                                 </p> : null}
-                                <Link to='/products'>
+                                <Link to="/products">
                                     <button className="save-btn" onClick={this.updateUserInfo}>Save Settings</button>
                                 </Link>
                             </form>
-                        </div>
                     </div>
-                    <div className="new-product-div">
+                    <div className="user-info-div" style={this.state.addressCheckbox ? {height: "794px"} : null}>
                         <span><i className="fas fa-plus-circle"></i></span>
                         <h3>You are changing your user account settings</h3>
                     </div>
