@@ -32,7 +32,7 @@ class UserInfo extends React.Component {
     }
 
     componentDidMount() {
-        axios.post('http://127.0.0.1:8006/app/v1/auth/user-info',
+        axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/user-info',
             {
                 email: localStorage.getItem('email')
             },
@@ -66,7 +66,7 @@ class UserInfo extends React.Component {
             alert('Please fill the fields!')
             event.preventDefault()
         } else {
-            axios.put(`http://127.0.0.1:8006/app/v1/auth/user-info/${this.state.id}`, {
+            axios.put(`https://stark-island-29614.herokuapp.com/app/v1/auth/user-info/${this.state.id}`, {
                 first_name: this.state.first_name,
                 last_name: this.state.last_name,
                 email: this.state.email,
