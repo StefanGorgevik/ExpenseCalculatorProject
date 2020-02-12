@@ -33,9 +33,7 @@ class Expenses extends React.Component {
                 .then(res => {
                     store.dispatch(getProducts(res.data));
                 })
-                .catch(err => {
-                    console.log(err);
-                })
+                .catch(err => {})
         } else if (this.state.yearlySelected != null && this.state.yearlySelected.length === 4 && !this.state.monthlyDisplay) {
             let dateFrom = new Date(`${this.state.yearlySelected}-01-01 00:00:00.000`).getTime()
             let dateTo = new Date(`${this.state.yearlySelected}-12-31 23:59:59.000`).getTime()
@@ -48,7 +46,7 @@ class Expenses extends React.Component {
                 .then(res => {
                     store.dispatch(getProducts(res.data))
                 })
-                .catch(err => console.log(err));
+                .catch(err => {});
         } else if (this.state.filter != null && this.state.yearlySelected != null && this.state.monthlyDisplay) {
             var monthNum;
             for (let i = 0; i < this.months.length; i++) {
@@ -70,7 +68,7 @@ class Expenses extends React.Component {
                 .then(res => {
                     store.dispatch(getProducts(res.data))
                 })
-                .catch(err => console.log(err));
+                .catch(err => {});
         }
     }
 

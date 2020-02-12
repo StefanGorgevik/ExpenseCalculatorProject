@@ -19,11 +19,10 @@ export const getTotalPrice = (price) => {
     }
 }
 
-export const editProduct = (product, editProductClicked) => {
+export const editProduct = (product) => {
     return {
         type: "EDIT_PRODUCT",
-        product,
-        editProductClicked
+        payload: product
     }
 }
 

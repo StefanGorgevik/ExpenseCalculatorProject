@@ -47,7 +47,7 @@ class NewProduct extends React.Component {
                 }
             )
                 .then(res => res)
-                .catch(err => console.log(err))
+                .catch(err => {})
         }
     }
 
@@ -71,12 +71,8 @@ class NewProduct extends React.Component {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`
                 }
             })
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+                .then(res => {})
+                .catch(err => {})
         }
     }
 

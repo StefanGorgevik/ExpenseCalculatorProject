@@ -70,15 +70,11 @@ class Register extends React.Component {
                                                                 localStorage.setItem('last_name', res.data.last_name);
                                                                 this.setState({ signed: true })
                                                         })
-                                                        .catch(err => {
-                                                                console.log(err)
-                                                        });
+                                                        .catch(err => { });
                                                         }, 1000)
                                         })
                                 
-                                .catch(err => {
-                                        console.log(err)
-                                })
+                                .catch(err => {})
                 }
         }
 

@@ -26,7 +26,7 @@ export function reducer(state = initState, action) {
         }
 
         case "EDIT_PRODUCT": {
-            return { ...state, productToEdit: action.product }
+            return { ...state, productToEdit: action.payload }
         }
 
         case "EDIT_PRODUCT_CLICKED": {

@@ -35,9 +35,7 @@ class Table extends React.Component {
                     }
                     store.dispatch(getTotalPrice(totalPrice));
                 })
-                .catch(err => {
-                    console.log(err);
-                })
+                .catch(err => { })
         }
     }
 
@@ -54,9 +52,7 @@ class Table extends React.Component {
                         store.dispatch(getProducts(res.data));
                         store.dispatch(tableUpdated(false));
                     })
-                    .catch(err => {
-                        console.log(err);
-                    })
+                    .catch(err => { })
         }
     }
 
@@ -80,18 +76,14 @@ class Table extends React.Component {
                 }
             })
             .then(res => {
-                console.log(res)
                 store.dispatch(deleteProduct(product))
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(err => { })
     }
 
     deleteProductHandler = (product) => {
         this.setState({ product: product })
         this.setState({ alertShow: true })
-
     }
 
     render() {

@@ -53,9 +53,7 @@ class UserInfo extends React.Component {
                     address: res.data[0]._address
                 })
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(err => { })
     }
 
   
@@ -89,9 +87,7 @@ class UserInfo extends React.Component {
                     const name = this.state.first_name + ' ' + this.state.last_name
                     store.dispatch(saveUserName(name))
                 })
-                .catch((err) => {
-                    console.log(err);
-                })
+                .catch((err) => {})
         }
     }
 

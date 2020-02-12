@@ -27,9 +27,7 @@ class Products extends React.Component {
                     store.dispatch(getProducts(res.data));
 
                 })
-                .catch(err => {
-                    console.log(err);
-                })
+                .catch(err => {})
         }
     }
 
