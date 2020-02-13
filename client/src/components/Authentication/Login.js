@@ -6,23 +6,26 @@ import { Redirect } from 'react-router-dom'
 
 import { saveUserName } from '../../redux/actions/userAction'
 import store from '../../redux/store'
+import Input from '../Input/Input'
 class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: null,
-            password: null,
+            userInfo: {
+                email: null,
+                password: null
+            },
             signed: false,
             error: null
         }
-    }   
-    
+    }
+
     componentDidMount() {
         localStorage.clear()
     }
 
     saveLoginData = (event) => {
-        this.setState({ [event.target.id]: event.target.value })
+        this.setState({ ...this.state.userInfo, userInfo: { ...this.state.userInfo, [event.target.id]: event.target.value } })
     }
 
     redirectToMain = () => {
@@ -36,8 +39,8 @@ class Login extends React.Component {
         event.preventDefault();
         axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login',
             {
-                email: this.state.email,
-                password: this.state.password
+                email: this.state.userInfo.email,
+                password: this.state.userInfo.password
             })
             .then(res => {
                 localStorage.setItem('jwt', res.data.jwt);
@@ -49,26 +52,25 @@ class Login extends React.Component {
                 this.setState({ signed: true, error: false })
             })
             .catch(err => {
-                this.setState({ error: true})
-                console.log(err)
+                this.setState({ error: true })
             });
     }
 
     render() {
+        var labels = ["Email", "Password"]
+                var inputs = Object.keys(this.state.userInfo).map((info, index) => {
+                        return (
+                                <Input key={index} htmlFor={info} labelName={labels[index]} inputId={info} saveUser={this.saveLoginData} />
+                        )
+                })
+
         return (
             <React.Fragment>
                 {this.redirectToMain()}
                 <main>
                     <div className="box" id="login">
                         <form>
-                            <p className="input-container">
-                                <label className="text-field-input" htmlFor="email">E-mail</label>
-                                <input onChange={this.saveLoginData} className="text-field" type="email" name="email" id="email" />
-                            </p>
-                            <p className="input-container">
-                                <label className="text-field-input" htmlFor="password">Password</label>
-                                <input onChange={this.saveLoginData} className="text-field" type="password" name="password" id="password" />
-                            </p>
+                            {inputs}
                             {this.state.error ? <p className="error-p">Wrong email or password!</p> : null}
                             <button className="primary-btn" type="submit" onClick={this.signIn}>Sign in</button>
                         </form>
@@ -83,4 +85,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+export default Login;
