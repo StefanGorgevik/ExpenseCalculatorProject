@@ -47,6 +47,7 @@ class Login extends React.Component {
                 localStorage.setItem('email', res.data.email);
                 localStorage.setItem('first_name', res.data.first_name);
                 localStorage.setItem('last_name', res.data.last_name);
+                localStorage.setItem('userid', res.data.userid);
                 const name = res.data.first_name + ' ' + res.data.last_name
                 store.dispatch(saveUserName(name))
                 this.setState({ signed: true, error: false })
@@ -85,4 +86,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default Login

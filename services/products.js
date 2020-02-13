@@ -17,7 +17,7 @@ app.use(cors())
 
 //jwt tokens
 var jwt = require('express-jwt');
-app.use(                                                       //sekoj req ke pomine niz ova i ke vrati req.user
+app.use(                                                     
     jwt(
         { secret: config.getConfig('jwt').key }
     )
@@ -30,12 +30,13 @@ app.get(url + ':id', productHandler.getOne);
 app.post(url, productHandler.saveProduct);
 app.put(url + ':id', productHandler.replaceProduct);
 app.patch(url + ':id', productHandler.updateProduct);
+app.delete(url + 'delete-all/:userid', productHandler.deleteAll);
 app.delete(url + ':id', productHandler.deleteProduct);
 
-app.listen(8080, (err) => {
+app.listen(8005, (err) => {
     if(err) {
         console.log(err)
         return
     }
-    console.log("Products server has started successfully on port 8080");
+    console.log("Products Server has started successfully on port 8005");
 })

@@ -25,7 +25,7 @@ const getAllProducts = (req, res) => {
         if(sortable.indexOf(sq[0]) > -1){
             sort[sq[0]] = sq[1] == 'desc' ? -1 : 1;
         }
-    }
+    }   
     productModel.getAllProducts(q, sort)
         .then(data => {
             res.status(200).send(data);
@@ -108,11 +108,22 @@ const deleteProduct = (req, res) => {
     })
 }
 
+const deleteAll = (req, res) => {
+    productModel.deleteAll(req.params.userid)
+    .then(() => {
+        res.status(204).send("Products deleted");
+    })
+    .catch((err) => {
+        res.status(500).send(err);
+    })
+}
+
 module.exports = {
     getAllProducts,
     getOne,
     saveProduct,
     replaceProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    deleteAll
 }

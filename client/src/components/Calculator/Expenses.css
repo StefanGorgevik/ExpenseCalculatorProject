@@ -7,29 +7,7 @@ html, body {
     overflow-x: hidden;
 }
 
-.main-div {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-.main-div select{
-    height: 35px;
-    margin-top: 40px;
-    margin-right: 210px;
-    margin-bottom: 10px;
-    color: #8d8d8d;
-}
-.main-div option {
-    padding: 10px;
-}
-.main-div h3 {
-    margin-left: 140px;
-    margin-top: 40px;
-}
-
-/* expenses div */
-
-#expenses-h3 {
+#expenses-h1 {
     margin-left: 145px;
     margin-bottom: 40px;
 }

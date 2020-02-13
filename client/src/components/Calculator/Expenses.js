@@ -24,7 +24,7 @@ class Expenses extends React.Component {
 
     componentDidUpdate() {
         if (this.state.yearlySelected === 'all') {
-            axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
+            axios.get("https://stark-island-29614.herokuapp.com/app/v1/products?sort=date:desc",
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -33,11 +33,13 @@ class Expenses extends React.Component {
                 .then(res => {
                     store.dispatch(getProducts(res.data));
                 })
-                .catch(err => {})
-        } else if (this.state.yearlySelected != null && this.state.yearlySelected.length === 4 && !this.state.monthlyDisplay) {
+                .catch(err => {
+                    console.log(err);
+                })
+        } else if (this.state.yearlySelected != null && this.state.yearlySelected.length === 4 && !this.state.monthlyDisplay ) {
             let dateFrom = new Date(`${this.state.yearlySelected}-01-01 00:00:00.000`).getTime()
             let dateTo = new Date(`${this.state.yearlySelected}-12-31 23:59:59.000`).getTime()
-            axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products/?date_from=${dateFrom}&date_to=${dateTo}`,
+            axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products?date_from=${dateFrom}&date_to=${dateTo}`,
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -46,20 +48,20 @@ class Expenses extends React.Component {
                 .then(res => {
                     store.dispatch(getProducts(res.data))
                 })
-                .catch(err => {});
+                .catch(err => console.log(err));
         } else if (this.state.filter != null && this.state.yearlySelected != null && this.state.monthlyDisplay) {
             var monthNum;
-            for (let i = 0; i < this.months.length; i++) {
-                if (this.state.filter === this.months[i]) {
+            for(let i = 0; i < this.months.length; i++) {
+                if(this.state.filter === this.months[i]) {
                     monthNum = i + 1;
-                    if (i.toString().length === 1) {
+                    if(i.toString().length === 1) {
                         monthNum = "0" + monthNum.toString();;
                     }
                 }
             }
             let dateFrom = new Date(`${this.state.yearlySelected}-${monthNum}-01 00:00:00.000`).getTime()
             let dateTo = new Date(`${this.state.yearlySelected}-${monthNum}-31 23:59:59.000`).getTime()
-            axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products/?date_from=${dateFrom}&date_to=${dateTo}`,
+            axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products?date_from=${dateFrom}&date_to=${dateTo}`,
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
@@ -68,12 +70,12 @@ class Expenses extends React.Component {
                 .then(res => {
                     store.dispatch(getProducts(res.data))
                 })
-                .catch(err => {});
+                .catch(err => console.log(err));
         }
     }
 
     yearlySelect = () => {
-        this.setState({ monthlyDisplay: false, yearlyDisplay: true, active: false, yearlySelected: 'all', filter: null })
+        this.setState({ monthlyDisplay: false, yearlyDisplay: true, active: false, yearlySelected: 'all', filter: null})
     }
 
     monthlySelect = () => {
@@ -88,7 +90,7 @@ class Expenses extends React.Component {
     }
 
     render() {
-
+        
         let yearly =
             <select name="year-select" className="month-select" onChange={this.yearlySelectHandler}>
                 <option defaultChecked value='all' > ALL</option>
@@ -97,7 +99,7 @@ class Expenses extends React.Component {
                 })}
             </select>;
 
-
+        
 
         let monthly = (
             <select name="month-select" className="month-select select-box" onChange={this.monthlySelectHandler}>
@@ -106,22 +108,22 @@ class Expenses extends React.Component {
                     return <option key={`month${index}`} value={month}>{month}</option>
                 })}
             </select>)
-
+        
         let yearMonthly = (
             <div className="yearMonthly-div">
-                {monthly}
-                {yearly}
+            {monthly}
+            {yearly}
             </div>
         )
         return (
             <React.Fragment>
                 <this.props.header />
-                <h3 id="expenses-h3">Expenses</h3>
+                <h1 id="expenses-h1">Expenses</h1>
                 <div className="expenses-div">
                     <Link to="#"><button className={!this.state.active ? 'active-btn select-btn' : 'select-btn'} onClick={this.yearlySelect}>Yearly</button></Link>
                     <Link to="#"><button className={this.state.active ? 'active-btn select-btn' : 'select-btn'} onClick={this.monthlySelect}>Monthly</button></Link>
                     <div className="select-div">
-                        {this.state.monthlyDisplay ? <label htmlFor="month-select">Choose month and year:</label> : <label htmlFor="year-select">Choose year:</label>}
+                        {this.state.monthlyDisplay ? <label htmlFor="month-select">Choose month and year:</label> : <label htmlFor="year-select">Choose year:</label>   }
                         {this.state.monthlyDisplay ? yearMonthly : yearly}
                     </div>
                 </div>

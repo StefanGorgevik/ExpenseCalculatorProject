@@ -25,28 +25,6 @@ button {
     cursor: pointer;
 }
 
-.buttons {
-    font-size: 15px;
-    width: 100%;
-    align-content: center;
-    align-items: center;
-    margin-left: 70px;
-    flex-wrap: nowrap;
-}
-.main-buttons {
-    background-color: white;
-    height: 40px;
-    min-width: 14%;
-    text-transform: uppercase;
-    padding: 0px 10px;
-    border-radius: 5px;
-    font-weight: 700;
-}
-#expenses-btn {
-    background: transparent;
-    border: 1.5px solid #576574;
-    color: #576574;
-}
 #products-btn {
     background:transparent;
     border: 1.5px solid #1DD1A1;
@@ -57,36 +35,25 @@ span,p {
     color: black;
 }
 
-.right-side {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 200px;
-    align-items: center;
-}
-
-#profile-image {
-    width: 25px;
-    height: 25px;
-}
-
 .main-div {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
-.main-div select{
+.select-filter{
     height: 35px;
-    margin-top: 40px;
-    margin-right: 210px;
-    margin-bottom: 10px;
     color: #8d8d8d;
-}
-.main-div option {
-    padding: 10px;
+    margin-left: 10px;
 }
 
-.main-div h3 {
+.select-filter option {
+    padding: 10px;
+}
+.select-filter-div {
+    margin-right: -500px;
+}
+
+.main-div h1 {
     margin-left: 140px;
     margin-top: 40px;
 }
@@ -107,6 +74,21 @@ span,p {
     padding: 0px 10px;
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
+}
+
+.delete-all-btn {
+    border: none;
+    font-size: 15px;
+    background-color: #576574;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.17);
+    color: white;
+    font-weight: 600;
+    height: 25px;
+    width: 130px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    margin-right: 120px;
 }
 .new-btn a {
     text-decoration: none;

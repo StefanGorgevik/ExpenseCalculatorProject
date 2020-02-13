@@ -20,6 +20,7 @@ class Table extends React.Component {
     }
 
     componentDidMount() {
+        this.props.getProducts();
         if(this.props.products) {
             axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
                 {
@@ -35,7 +36,9 @@ class Table extends React.Component {
                     }
                     store.dispatch(getTotalPrice(totalPrice));
                 })
-                .catch(err => { })
+                .catch(err => {
+                    console.log(err);
+                })
         }
     }
 
@@ -52,7 +55,10 @@ class Table extends React.Component {
                         store.dispatch(getProducts(res.data));
                         store.dispatch(tableUpdated(false));
                     })
-                    .catch(err => { })
+                    .catch(err => {
+                        console.log(err);
+                    })
+               
         }
     }
 
@@ -76,14 +82,18 @@ class Table extends React.Component {
                 }
             })
             .then(res => {
+                console.log(res)
                 store.dispatch(deleteProduct(product))
             })
-            .catch(err => { })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     deleteProductHandler = (product) => {
         this.setState({ product: product })
         this.setState({ alertShow: true })
+
     }
 
     render() {
@@ -110,8 +120,8 @@ class Table extends React.Component {
         }
         return (
             <React.Fragment>
-                <main className="main-box">
-                    <table className="Table">
+                <main className="main-box-table">
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th>Product Name</th>
@@ -144,4 +154,12 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Table)
+function mapDispatchToProps(dispatch) {
+    return {
+        getProducts: () => {
+            dispatch(getProducts())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table)
