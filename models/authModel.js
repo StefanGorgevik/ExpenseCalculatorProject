@@ -1,89 +1,69 @@
-const authModel = require('../models/authModel');
-const userValidator = require('../validators/userValidator');
-var validator = require("node-input-validator");
-var bcrypt = require('bcryptjs');
-var jwt = require('jsonwebtoken');
-const config = require('../config/index.js');
+const mongoose = require('mongoose');
 
-const register = (req, res) => {
-    const newUser = req.body;
-    var validate = new validator.Validator(newUser, userValidator.createUser)
-    validate.check()
-    .then(matched => {
-        if(matched) {
-            bcrypt.genSalt(10, function(err, salt) {
-                if(err) {
-                    throw new Error(err);
-                    return;
-                }
-                bcrypt.hash(newUser.password, salt, function(err, hash) {
-                    if(err) {
-                        throw new Error(err);
-                        return;
-                    }
-                    return authModel.register({...newUser, password: hash})
-                })
-            })
-        } else {
-            throw new Error("Validation failed!");
-        }
+const User = mongoose.model(
+    'users',
+    new mongoose.Schema({
+        first_name: String,
+        last_name: String,
+        email: String,
+        password: String,
+        date_of_birth: Date,
+        telephone: String,
+        country: String,
+        _created: { type: Date, default: Date.now},
+        _address: String
     })
-    .then(() => {
-        return res.status(201).send("OK");
-    })
-    .catch(err => {
-        return res.status(500).send(validate.errors);
-    })
-}
+)
 
-const login = (req, res) => {
-    authModel.login(req.body.email)
-    .then((data) => {
-        bcrypt.compare(req.body.password, data.password, function(err, result) {
+const register = (data) => {
+    return new Promise((success, fail) => {
+        var user = new User(data);
+        user.save(err => {
             if(err) {
-                return res.status(500).send("Could not compare passwords")
+                return fail(err);
             }
-            if(result) {
-                var tokenData = {
-                    id: data._id,
-                    full_name: `${data.first_name} ${data.last_name}`,
-                    email: data.email
-                }
-                var token = jwt.sign(tokenData, config.getConfig('jwt').key)
-                return res.status(200).send({jwt: token, first_name:data.first_name, last_name:data.last_name, email: data.email, userid: data._id})
-            }
-            return res.status(400).send('Not found!')
+            return success();
         })
-    })
-    .catch(err => {
-        return res.status(500).send("Could not found user!");
     })
 }
 
-const getUserInfo = (req,res) => {
-    authModel.getUser(req.body.email)
-    .then(data => {
-        res.status(200).send(data)
-    })
-    .catch(err => {
-        res.status(500).send(err)
+const login = (email) => {
+    return new Promise((success,fail) => {
+        User.find({email: email}, (err,data) => {
+            if(err) {
+                console.log(err);
+                return fail(err);
+            }
+            return success(data[0])
+        })
     })
 }
 
-const updateUserInfo = (req, res) => {
-        authModel.updateUser(req.params.id, req.body)
-        .then(() => {
-            res.status(201).send();
+const getUser = (email) => {
+    return new Promise ((success, fail) => {
+        User.find({email: email}, (err, data) => {
+            if(err) {
+                return fail(err);
+            }
+            return success(data)
         })
-        .catch(err => {
-            res.status(500).send(err);
-        });
-    
+    })
+}
+
+const updateUser = (id, data) => {
+    return new Promise((success, fail) => {
+        User.updateOne({ _id: id }, data, err => {
+            if (err) {
+                return fail(err)
+            }
+            return success(data)
+        })
+    })
 }
 
 module.exports = {
     register,
     login,
-    getUserInfo,
-    updateUserInfo
+    getUser,
+    updateUser
 }
