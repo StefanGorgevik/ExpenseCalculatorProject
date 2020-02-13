@@ -33,10 +33,10 @@ app.patch(url + ':id', productHandler.updateProduct);
 app.delete(url + 'delete-all/:userid', productHandler.deleteAll);
 app.delete(url + ':id', productHandler.deleteProduct);
 
-app.listen(8005, (err) => {
+app.listen(8080, (err) => {
     if(err) {
         console.log(err)
         return
     }
-    console.log("Products Server has started successfully on port 8005");
+    console.log("Products Server has started successfully on port 8080");
 })
