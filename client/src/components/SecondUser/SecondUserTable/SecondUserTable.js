@@ -57,7 +57,7 @@ class Table extends React.Component {
     render() {
         let tableRow = null;
         console.log("entered")
-        if (this.props.secondUserProducts) {
+        if (this.props.secondUserProducts !== []) {
             console.log("entered2")
             console.log(this.props.secondUserProducts)
             tableRow = this.props.secondUserProducts.map(product => {
