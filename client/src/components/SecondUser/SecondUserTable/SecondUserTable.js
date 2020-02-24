@@ -18,7 +18,7 @@ class Table extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.filterBy !== this.props.filterBy) {
-            axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products?sort=${this.props.filterBy}`,
+            axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products/?sort=${this.props.filterBy}`,
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('second-jwt')}`
@@ -62,8 +62,6 @@ class Table extends React.Component {
             console.log(this.props.secondUserProducts)
             tableRow = this.props.secondUserProducts.map(product => {
                 return (<TableRow key={product.name + Math.random()} name={product.name}
-                    deleteProduct={() => this.deleteProductHandler(product)}
-                    editProduct={() => this.editProduct(product)}
                     type={product.type}
                     description={product.description}
                     date={product.date}
