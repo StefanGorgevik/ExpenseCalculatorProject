@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import Header from '../components/Navigation/Header'
-import Expenses from '../components/Calculator/Expenses'
-import Products from '../components/Calculator/Products'
-import Product from '../components/Product/Product'
-import Login from '../components/Authentication/Login'
-import Register from '../components/Authentication/Register'
-import Table from '../components/Table/Table'
-import UserInfo from '../components/UserInfo/UserInfo'
+import Header from './components/Navigation/Header'
+import Expenses from './components/Calculator/Expenses'
+import Products from './components/Calculator/Products'
+import Product from './components/Product/Product'
+import Login from './components/Authentication/Login'
+import Register from './components/Authentication/Register'
+import Table from './components/Table/Table'
+import UserInfo from './components/UserInfo/UserInfo'
 
 class App extends Component {
     render() {
