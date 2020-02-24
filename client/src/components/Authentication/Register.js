@@ -75,13 +75,9 @@ class Register extends React.Component {
                                                         store.dispatch(saveUserName(res.data.first_name, res.data.last_name))
                                                         this.setState({ signed: true, error: false })
                                                 })
-                                                .catch(err => {
-                                                        console.log(err)
-                                                });
+                                                .catch(err => {});
                                 })
-                                .catch(err => {
-                                        console.log(err)
-                                })
+                                .catch(err => {})
                 }
         }
 
@@ -111,4 +107,4 @@ class Register extends React.Component {
         }
 }
 
-export default Register
+export default Register;

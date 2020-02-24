@@ -54,7 +54,7 @@ const saveProduct = (req, res) => {
     if (newProduct.date == undefined || newProduct.date.length == 0) { errors++ };
     if (newProduct.price == undefined || newProduct.price.length == 0) { errors++ };
     if (errors == 0) {
-        productModel.saveProduct({...newProduct, userID: req.user.id})
+        productModel.saveProduct({...newProduct, userID: req.user.id, userName: req.user.full_name})
             .then(() => {
                 res.status(201).send("Created");
             })

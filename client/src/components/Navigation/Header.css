@@ -1,3 +1,7 @@
+.header-div {
+    margin-bottom: -30px;
+}
+
 header {
     width: 100%;
     display: flex;
@@ -77,3 +81,14 @@ span,p {
     border-right: 1px solid black;
     margin-right: 0;
 }
+.user-info:hover, 
+.sign-out:hover {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.disabled-link {
+    margin-left: 20px;
+    color: grey;
+    pointer-events: none;
+  }

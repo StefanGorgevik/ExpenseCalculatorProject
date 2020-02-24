@@ -4,6 +4,12 @@ export const getProducts = (data) => {
         payload: data
     }
 }
+export const getProductsSecond = (data) => {
+    return {
+        type: 'SECOND_USER_GET_PRODUCTS',
+        payload: data
+    }
+}
 
 export const deleteProduct = (product) => {
     return {
@@ -19,10 +25,17 @@ export const getTotalPrice = (price) => {
     }
 }
 
+export const getTotalPriceSecond = (price) => {
+    return {
+        type: "SECOND_USER_GET_TOTAL_PRICE",
+        payload: price
+    }
+}
+
 export const editProduct = (product) => {
     return {
         type: "EDIT_PRODUCT",
-        payload: product
+        product
     }
 }
 
@@ -47,3 +60,24 @@ export const tableUpdated = (tableUpdated) => {
     }
 }
 
+export const mergeTables = (tablesMerged, filterOption) => {
+    return {
+        type: "MERGE_TABLES",
+        payload: tablesMerged,
+        filterOption: filterOption
+    }
+}
+
+export const filterBy = (filter) => {
+    return {
+        type: "FILTER_BY",
+        payload: filter
+    }
+}
+
+export const secondSignOutClicked = (bool) => {
+    return {
+        type: "SECOND_SIGNOUT_CLICKED",
+        payload: bool
+    }
+} 

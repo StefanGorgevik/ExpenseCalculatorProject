@@ -1,0 +1,39 @@
+.merged-table {
+    width: 85%;
+    border-collapse: collapse; 
+    text-align: center;  
+}
+.merged-table tr td {
+    padding: 0;
+}
+.merged-table thead{
+    border-bottom: 1px solid black;
+}
+.merged-table thead th{
+    height: 50px;
+}
+
+.merged-body-tr{
+    background-color: white;
+    border-bottom: 5px solid #E5EDF5;
+}
+#merged-emptyTd {
+    height: 12px;
+    background-color: inherit;
+}
+
+.merged-table .merged-body-tr{
+    height: 50px;
+}
+
+.merged-main-box-table{
+    display: flex;
+    justify-content: center;
+    
+}
+
+#merged-price-td {
+    font-size: 22px;
+    font-weight: bold;
+    background-color: rgb(253, 186, 186);
+}

@@ -6,6 +6,7 @@ import store from '../../redux/store'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import Input from '../Input/Input'
 class NewProduct extends React.Component {
     constructor(props) {
         super(props)
@@ -14,8 +15,7 @@ class NewProduct extends React.Component {
             type: this.props.editProductClicked ? this.props.productToEdit.type : '',
             description: this.props.editProductClicked ? this.props.productToEdit.description : '',
             date: this.props.editProductClicked ? this.props.productToEdit.date : '',
-            price: this.props.editProductClicked ? this.props.productToEdit.price : '',
-            tableUpdated: false
+            price: this.props.editProductClicked ? this.props.productToEdit.price : ''
         }
     }
 
@@ -24,13 +24,14 @@ class NewProduct extends React.Component {
     }
 
     createProduct = (event) => {
-        if (this.state.name == '' || this.state.type == '' ||
-            this.state.description == '' || this.state.date == '' || this.state.price == '') {
+        console.log(this.state)
+        if (this.state.name === '' || this.state.type === '' ||
+            this.state.description === '' || this.state.date === '' || this.state.price === '') {
             event.preventDefault();
             alert('Fill out the fields correctly!')
         } else if (this.state.name !== '' || this.state.type !== '' ||
             this.state.description !== '' || this.state.date !== '' || this.state.price !== '') {   
-            store.dispatch(tableUpdated(!this.state.tableUpdated))
+            store.dispatch(tableUpdated(true))
             axios.post('https://stark-island-29614.herokuapp.com/app/v1/products/',
                 {
                     name: this.state.name,
@@ -46,7 +47,7 @@ class NewProduct extends React.Component {
                     }
                 }
             )
-                .then(res => res)
+                .then(res => {})
                 .catch(err => {})
         }
     }
@@ -57,7 +58,7 @@ class NewProduct extends React.Component {
             alert('Please fill the fields!')
             event.preventDefault()
         } else {
-            store.dispatch(tableUpdated(!this.state.tableUpdated))
+            store.dispatch(tableUpdated(true))
             axios.put(`https://stark-island-29614.herokuapp.com/app/v1/products/${this.props.productToEdit._id}`,
                 {
                     name: this.state.name,
@@ -71,12 +72,20 @@ class NewProduct extends React.Component {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`
                 }
             })
-                .then(res => {})
-                .catch(err => {})
+                .then(res => { })
+                .catch(err => { })
         }
     }
 
     render() {
+        var labels = ["Product Name", "Product Type", "Product Description", "Product Date", "Product Price"];
+
+        var inputs = Object.keys(this.state).map((info, index) => {
+           return ( <Input key={index} htmlFor={info} labelName={labels[index]}
+            inputId={info} saveUser={this.saveProduct}
+            value={this.props.editProductClicked ? this.props.productToEdit[info] : '' }/>
+            )
+        })
         return (
             <React.Fragment>
                 <this.props.header />
@@ -85,36 +94,7 @@ class NewProduct extends React.Component {
                     <div className="box-container">
                         <div className="form-box">
                             <form>
-                                <p className="input-container">
-                                    <label className="text-field-input" htmlFor="name">Product Name</label>
-                                    <input defaultValue={this.props.editProductClicked ? this.props.productToEdit.name : ''}
-                                        onChange={this.saveProduct}
-                                        className="text-field" type="text" name="name" id="name" />
-                                </p>
-                                <p className="input-container">
-                                    <label className="text-field-input" htmlFor="description">Product Description</label>
-                                    <input defaultValue={this.props.editProductClicked ? this.props.productToEdit.description : ''}
-                                        onChange={this.saveProduct}
-                                        className="text-field" type="text" name="description" id="description" />
-                                </p>
-                                <p className="input-container">
-                                    <label className="text-field-input" htmlFor="type">Product Type</label>
-                                    <input defaultValue={this.props.editProductClicked ? this.props.productToEdit.type : ''}
-                                        onChange={this.saveProduct}
-                                        className="text-field" type="text" name="type" id="type" />
-                                </p>
-                                <p className="input-container">
-                                    <label className="text-field-input" htmlFor="date">Product Date</label>
-                                    <input defaultValue={this.props.editProductClicked ? this.props.productToEdit.date.toString().slice(0, 10) : ''}
-                                        onChange={this.saveProduct}
-                                        className="text-field" type="date" name="date" id="date" />
-                                </p>
-                                <p className="input-container">
-                                    <label className="text-field-input" htmlFor="price">Product Price</label>
-                                    <input defaultValue={this.props.editProductClicked ? Number(this.props.productToEdit.price) : ''}
-                                        onChange={this.saveProduct}
-                                        className="text-field" type="text" name="price" id="price" />
-                                </p>
+                                {inputs}
                                 <Link to='/products'>
                                     {this.props.editProductClicked ?
                                         <button onClick={this.editProduct} id="primary-button" className="primary-btn" type="submit"> Edit Product</button> :

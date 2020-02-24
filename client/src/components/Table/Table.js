@@ -20,7 +20,6 @@ class Table extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getProducts();
         if(this.props.products) {
             axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
                 {
@@ -36,9 +35,7 @@ class Table extends React.Component {
                     }
                     store.dispatch(getTotalPrice(totalPrice));
                 })
-                .catch(err => {
-                    console.log(err);
-                })
+                .catch(err => {})
         }
     }
 
@@ -55,9 +52,7 @@ class Table extends React.Component {
                         store.dispatch(getProducts(res.data));
                         store.dispatch(tableUpdated(false));
                     })
-                    .catch(err => {
-                        console.log(err);
-                    })
+                    .catch(err => {})
                
         }
     }
@@ -70,7 +65,6 @@ class Table extends React.Component {
         const clicked = !this.state.editProductClicked
         store.dispatch(editProduct(product));
         store.dispatch(editProductClicked(clicked));
-
     }
 
     deleteProduct = (product, productID) => {
@@ -82,12 +76,9 @@ class Table extends React.Component {
                 }
             })
             .then(res => {
-                console.log(res)
                 store.dispatch(deleteProduct(product))
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(err => { })
     }
 
     deleteProductHandler = (product) => {
@@ -119,7 +110,7 @@ class Table extends React.Component {
             />
         }
         return (
-            <React.Fragment>
+            <div>
                 <main className="main-box-table">
                     <table className="table">
                         <thead>
@@ -141,7 +132,7 @@ class Table extends React.Component {
                     </table>
                 </main>
                 {alert}
-            </React.Fragment>
+            </div>
         )
     }
 }
@@ -154,12 +145,5 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        getProducts: () => {
-            dispatch(getProducts())
-        }
-    }
-}
+export default connect(mapStateToProps)(Table)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table)

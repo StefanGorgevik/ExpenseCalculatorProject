@@ -1,3 +1,4 @@
+
 import React from 'react'
 import '../../assets/styles/Authentication.css'
 import { Link } from 'react-router-dom'
@@ -59,11 +60,11 @@ class Login extends React.Component {
 
     render() {
         var labels = ["Email", "Password"]
-                var inputs = Object.keys(this.state.userInfo).map((info, index) => {
-                        return (
-                                <Input key={index} htmlFor={info} labelName={labels[index]} inputId={info} saveUser={this.saveLoginData} />
-                        )
-                })
+        var inputs = Object.keys(this.state.userInfo).map((info, index) => {
+            return (
+                <Input key={index} htmlFor={info} labelName={labels[index]} inputId={info} saveUser={this.saveLoginData} />
+            )
+        })
 
         return (
             <React.Fragment>

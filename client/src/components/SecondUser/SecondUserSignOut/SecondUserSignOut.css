@@ -1,14 +1,15 @@
-#alert{
+.second-log-out{
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: rgba(0, 0, 0, 0.59);
+    margin-top: -105px;
 }
 
-#alert-container {
+.second-alert-container {
     width: 440px;
     height: 225px;
     background: #fff; 
@@ -21,27 +22,28 @@
     margin-bottom: auto;
 }
 
-#alert-text-container {
+.second-alert-text-container {
     color: #575757;
+    text-align: center;
 }
 
-#alert-text-container h1 {
+.second-alert-text-container h1 {
     font-size: 20px; 
     font-weight: bold; 
     margin: 0;
 } 
 
-#alert-text-container p {
+.second-alert-text-container p {
     font-size: 18px;
 }
 
-#alert-buttons {
+.second-alert-buttons {
     display: flex;
     justify-content: flex-end;
     margin-top: auto;
 }
 
-.alert-btn {
+.second-alert-btn {
     width: 100px;
     height: 35px;
     font-size: 15px;
@@ -51,24 +53,15 @@
     border:  0;
 }
 
-#cancel-alert-btn {
+#second-cancel-alert-btn {
     color: #575757;
     background: transparent;
 }
 
-#delete-alert-btn {
+#second-delete-alert-btn {
     color: #fff;
     background: #576574;
     box-shadow: 0px 0px 16px  rgba(0, 0, 0, 0.17);   
 }
 
-.delete {
-    margin-top: -0px;
-}
-.delete-second {
-    margin-top: -105px;
-}
-
-.log-out {
-    margin-top: -105px;
-}
+ 

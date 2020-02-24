@@ -1,0 +1,14 @@
+.select-filter{
+    height: 35px;
+    color: #8d8d8d;
+    margin-left: 10px;
+}
+.select-filter:hover {
+    height: 40px;
+    color: black;
+    font-size: 18px;
+}
+
+.select-filter option {
+    padding: 10px;
+}

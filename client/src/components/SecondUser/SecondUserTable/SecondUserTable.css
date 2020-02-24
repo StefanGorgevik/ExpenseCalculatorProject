@@ -1,0 +1,40 @@
+.second-table {
+    width: 85%;
+    border-collapse: collapse; 
+    text-align: center;  
+}
+.second-table tr td {
+    padding: 0;
+}
+.second-table thead{
+    border-bottom: 1px solid black;
+}
+.second-table thead th{
+    height: 50px;
+}
+
+.second-body-tr{
+    background-color: white;
+    border-bottom: 5px solid #E5EDF5;
+}
+#second-emptyTd {
+    height: 12px;
+    background-color: inherit;
+}
+
+.second-table .second-body-tr{
+    height: 50px;
+}
+
+.second-main-box-table{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.table
+#edit-button,
+#delete-button {
+    background-color: inherit;
+    border: none;  
+}

@@ -10,7 +10,7 @@ import Register from '../components/Authentication/Register'
 import Table from '../components/Table/Table'
 import UserInfo from '../components/UserInfo/UserInfo'
 
-class App extends Component {
+class Layout extends Component {
     render() {
         return (
         <BrowserRouter>
@@ -28,4 +28,4 @@ class App extends Component {
     }
 }
 
-export default App
+export default Layout

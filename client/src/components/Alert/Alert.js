@@ -3,7 +3,7 @@ import '../../assets/styles/Pop-up.css'
 
 const alert = (props) => {
     return (
-        <div id="alert" className='delete'>
+        <div id="alert" className={props.deleteAllClicked ? 'delete' : 'delete-second'}>
             <div id="alert-container">
                 <div id="alert-text-container">
                     <h1>Delete Product</h1>
@@ -21,5 +21,4 @@ const alert = (props) => {
         </div>
     )
 }
-
 export default alert;

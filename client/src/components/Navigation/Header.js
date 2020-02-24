@@ -2,9 +2,11 @@ import React from 'react'
 import './Header.css'
 import { Link, NavLink } from 'react-router-dom'
 
-import { expensesClicked } from '../../redux/actions/productAction'
+import { expensesClicked, mergeTables, secondSignOutClicked } from '../../redux/actions/productAction'
+import {addAccountClicked,secondUserSigned} from '../../redux/actions/userAction'
 import store from '../../redux/store'
 import SignOut from '../SignOut/SignOut'
+import SecondUserSignOut from '../SecondUser/SecondUserSignOut/SecondUserSignOut'
 import { Redirect } from 'react-router-dom'
 import Profile from '../../assets/images/small_profile.png'
 import { connect } from 'react-redux'
@@ -41,14 +43,34 @@ class Header extends React.Component {
     }
 
     signOutAccepted = () => {
+        store.dispatch(mergeTables(false))
+        store.dispatch(secondUserSigned(false))
+        store.dispatch(addAccountClicked(false))
         localStorage.clear()
         this.setState({ signOut: true })
     }
-    
 
+    addAccount = () => {
+        store.dispatch(addAccountClicked(true))
+    }
+
+    secondHideSignOutHandler = () => {
+        store.dispatch(secondSignOutClicked(false))
+    }
+
+    signOutSecondUser = () => {
+        let keysToRemove = ["second-jwt", "second-first_name", "second-last_name", "second-email", "second-userid"];
+        keysToRemove.forEach(k => {
+            localStorage.removeItem(k);
+        })
+        store.dispatch(secondUserSigned(false))
+        store.dispatch(addAccountClicked(false))
+        store.dispatch(secondSignOutClicked(false))
+    }
+    
     render() {
         return (
-            <React.Fragment>
+            <div className="header-div">
                 {!localStorage.getItem('jwt') ? <Redirect to='/' /> : null}
                 <header>
                     <nav className="nav">
@@ -60,20 +82,28 @@ class Header extends React.Component {
                             <img id="profile-image" src={Profile} alt="profile" />
                             <p id='name-p'>{this.state.name}</p>
                             <p className="user-info"><Link to='/user-info'>Your Info</Link></p>
+                            <p className={this.props.secondUserSigned || this.props.expensesClicked ? 'disabled-link' : 'user-info'} onClick={this.addAccount}><Link to='#'>Add Account</Link></p>
                             <p className="sign-out"><Link to='#' onClick={this.signOutClicked}>Sign Out</Link></p>
                         </div>
                     </nav>
                 </header>
+                {this.props.secondSignOutClicked ? <SecondUserSignOut hide={this.secondHideSignOutHandler}
+                    signOutAccepted={this.signOutSecondUser}
+                /> : null}
                 {this.state.signOutClicked ? <SignOut hide={this.hideSignOut}
                     signOutAccepted={this.signOutAccepted}
                 /> : null}
-            </React.Fragment>
+                
+            </div>
         )
     }
 }
 function mapStateToProps(state) {
     return {
-        userName: state.userName
+        userName: state.userName,
+        secondUserSigned: state.secondUserSigned,
+        expensesClicked: state.expensesClicked,
+        secondSignOutClicked: state.secondSignOutClicked
     }
 }
 

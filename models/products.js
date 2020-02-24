@@ -8,6 +8,7 @@ const Product = mongoose.model(
         date: Date,
         price: Number, 
         userID: String,
+        userName: String,
         _created: Date,
         _modified: Date
     })
@@ -73,6 +74,7 @@ const deleteAll = (userid) => {
     return new Promise((success,fail) => {
         Product.deleteMany({userID: userid}, err => {
             if(err) {
+                console.log(err)
                 return fail(err);
             }
             return success();

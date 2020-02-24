@@ -1,0 +1,55 @@
+.sec-log-box{
+    display: flex;
+    position: fixed;
+    height: 350px;
+    flex-direction: column;
+    justify-content: center;
+    width: 420px;
+    border-radius: 6px;
+    background-color: #fff;
+    margin-top: 200px;
+}
+.sec-log-box form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.sec-log-box p {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.second-login {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.59);
+}
+.second-primary-btn {
+    font-size: 15px; 
+    color: #fff;
+    background: #1DD1A1; 
+    height: 25px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.17);
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    width: 333px;
+}
+
+.second-error-p {
+    color: #8d8d8d;
+    font-weight: bold;
+}
+
+.notif-div {
+    margin: 10px;
+    text-align: center;
+}
