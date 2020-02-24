@@ -18,7 +18,7 @@ class Table extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.filterBy !== this.props.filterBy) {
-            axios.get(`http://localhost:8005/app/v1/products?sort=${this.props.filterBy}`,
+            axios.get(`https://stark-island-29614.herokuapp.com/app/v1/products?sort=${this.props.filterBy}`,
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('second-jwt')}`
@@ -35,7 +35,7 @@ class Table extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8005/app/v1/products/?sort=date:desc",
+        axios.get("https://stark-island-29614.herokuapp.com/app/v1/products/?sort=date:desc",
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('second-jwt')}`

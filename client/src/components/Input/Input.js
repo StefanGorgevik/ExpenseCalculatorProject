@@ -2,10 +2,6 @@ import React from 'react'
 import './Input.css'
 
 const Input = (props) => {
-    if (props.htmlFor === 'date') {
-        console.log(props.value.toString().slice(0, 10))
-    }
-
     return (
         <p className="input-container">
             <label className="text-field-input" id="first-name-label" htmlFor={props.htmlFor}>{props.labelName}</label>

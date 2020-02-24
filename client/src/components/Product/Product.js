@@ -24,7 +24,6 @@ class NewProduct extends React.Component {
     }
 
     createProduct = (event) => {
-        console.log(this.state)
         if (this.state.name === '' || this.state.type === '' ||
             this.state.description === '' || this.state.date === '' || this.state.price === '') {
             event.preventDefault();

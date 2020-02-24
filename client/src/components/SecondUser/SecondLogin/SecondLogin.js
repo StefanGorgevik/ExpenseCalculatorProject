@@ -26,7 +26,7 @@ class SecondLogin extends React.Component {
 
     signIn = (event) => {
         event.preventDefault();
-        axios.post('http://127.0.0.1:8006/app/v1/auth/login',
+        axios.post('https://stark-island-29614.herokuapp.com/app/v1/auth/login',
             {
                 email: this.state.userInfo.email,
                 password: this.state.userInfo.password

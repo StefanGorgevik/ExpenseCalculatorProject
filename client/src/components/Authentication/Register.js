@@ -42,6 +42,7 @@ class Register extends React.Component {
         }
 
         saveUser = (event) => {
+                localStorage.clear();
                 if (this.state.userInfo.first_name == null || this.state.userInfo.last_name == null ||
                         this.state.userInfo.email == null || this.state.userInfo.date_of_birth == null ||
                         this.state.userInfo.telephone == null || this.state.userInfo.country == null || this.state.userInfo.password == null) {
