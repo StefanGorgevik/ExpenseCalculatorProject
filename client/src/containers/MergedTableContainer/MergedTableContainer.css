@@ -1,5 +1,5 @@
 .merged-table-container {
-    margin-top: 30px;
+    margin-top: 70px;
 
 }
 .merged-h1{
@@ -10,7 +10,7 @@
 .go-back-btn{
     position: relative;
     left: 1500px;
-    bottom: 20px;
+    bottom: 60px;
     border: none;
     font-size: 15px;
     background-color: #576574;
