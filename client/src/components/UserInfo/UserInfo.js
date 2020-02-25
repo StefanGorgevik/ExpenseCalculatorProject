@@ -111,7 +111,7 @@ class UserInfo extends React.Component {
         return (
             <div>
                 <this.props.header />
-                <h3 className="general-h3">General Account Settings</h3>
+                <h1 className="general-h1">General Account Settings</h1>
                 <main className="user-info-main">
                     <div className="user-form-box">
                         <form>
@@ -130,7 +130,7 @@ class UserInfo extends React.Component {
                             </Link>
                         </form>
                     </div>
-                    <div className="user-info-div" style={this.state.addressCheckbox ? { height: "794px" } : null}>
+                    <div className="user-info-div" style={this.state.addressCheckbox ? { height: "740px" } : null}>
                         <span><i className="fas fa-plus-circle"></i></span>
                         <h3>You are changing your user account settings</h3>
                     </div>

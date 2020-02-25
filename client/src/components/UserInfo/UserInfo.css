@@ -82,10 +82,10 @@ html, body {
     color: #8d8d8d;
 }
 
-.general-h3 {
+.general-h1 {
     margin-left: 200px;
     margin-bottom: 40px;
-    margin-top: 25px;
+    margin-top: 55px;
 }
 
 .address-p {
@@ -107,7 +107,7 @@ html, body {
     text-align: center;
     color:#9a9a9a;
     width: 650px;
-    height: 67.5vh;
+    height: 77vh;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     border-top-right-radius: 6px;

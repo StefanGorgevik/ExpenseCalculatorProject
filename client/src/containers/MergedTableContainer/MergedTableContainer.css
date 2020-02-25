@@ -8,9 +8,9 @@
 }
 
 .go-back-btn{
-    position: relative;
-    left: 1500px;
-    bottom: 60px;
+    position: absolute;
+    right: 200px;
+    top: 110px;
     border: none;
     font-size: 15px;
     background-color: #576574;

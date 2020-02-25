@@ -112,7 +112,7 @@ class Expenses extends React.Component {
             </div>
         )
         return (
-            <React.Fragment>
+            <div className="expenses-main-div">
                 <this.props.header />
                 <h1 id="expenses-h1">Expenses</h1>
                 <div className="expenses-div">
@@ -131,7 +131,7 @@ class Expenses extends React.Component {
                 <div className="transparent-div">
                     <p>Total spent: <span>{this.props.totalPrice}</span> den.</p>
                 </div>
-            </React.Fragment>
+            </div>
         )
     }
 }
