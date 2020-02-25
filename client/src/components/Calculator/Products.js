@@ -81,9 +81,10 @@ class Products extends React.Component {
         }
         return (
             <div className="products-div">
-            
-            {this.props.addAccountClicked ? <SecondLogin /> : null}
+                {alert}
+                {this.props.addAccountClicked ? <SecondLogin /> : null}
                 <this.props.header />
+                
                 {!this.props.tablesMerged ?
                     <div>
                         <div className="added-second-user">
@@ -94,12 +95,13 @@ class Products extends React.Component {
                                 </div>
                                 <button onClick={this.deleteButtonClicked} className="delete-all-btn">Delete all!</button>
                             </div>
+                            
                             <this.props.table />
                         </div>
                         {this.props.secondUserSigned ? <SecondUser /> : null}
                         {this.props.secondUserSigned ? null : <Link to="/new-product"><button className="new-btn" onClick={this.newProductHandler}>New Product</button></Link>}
                     </div> : <MergedTableContainer />}
-                    {alert}
+                    
             </div>
         )
     }

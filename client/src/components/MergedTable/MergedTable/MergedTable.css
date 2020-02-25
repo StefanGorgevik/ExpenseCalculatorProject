@@ -15,7 +15,11 @@
 
 .merged-body-tr{
     background-color: white;
-    border-bottom: 5px solid #E5EDF5;
+    border-bottom: 5px solid rgb(250, 251, 251);
+}
+.merged-body-tr:hover {
+    font-weight: 500;
+    background-color: rgb(214, 220, 226);
 }
 #merged-emptyTd {
     height: 12px;

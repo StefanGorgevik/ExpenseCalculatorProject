@@ -26,6 +26,11 @@
     height: 50px;
 }
 
+.body-tr:hover {
+    font-weight: 500;
+    background-color: rgb(214, 220, 226);
+}
+
 .main-box-table{
     display: flex;
     justify-content: center;

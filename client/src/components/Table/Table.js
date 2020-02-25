@@ -111,6 +111,7 @@ class Table extends React.Component {
         }
         return (
             <div>
+            {alert}
                 <main className="main-box-table">
                     <table className="table">
                         <thead>
@@ -131,7 +132,6 @@ class Table extends React.Component {
                         </tbody>
                     </table>
                 </main>
-                {alert}
             </div>
         )
     }

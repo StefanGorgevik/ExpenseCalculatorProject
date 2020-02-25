@@ -17,6 +17,11 @@
     background-color: white;
     border-bottom: 5px solid #E5EDF5;
 }
+
+.second-body-tr:hover {
+    font-weight: 500;
+    background-color: rgb(214, 220, 226);
+}
 #second-emptyTd {
     height: 12px;
     background-color: inherit;
