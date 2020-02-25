@@ -81,7 +81,7 @@ class Products extends React.Component {
         }
         return (
             <div className="products-div">
-            {alert}
+            
             {this.props.addAccountClicked ? <SecondLogin /> : null}
                 <this.props.header />
                 {!this.props.tablesMerged ?
@@ -99,6 +99,7 @@ class Products extends React.Component {
                         {this.props.secondUserSigned ? <SecondUser /> : null}
                         {this.props.secondUserSigned ? null : <Link to="/new-product"><button className="new-btn" onClick={this.newProductHandler}>New Product</button></Link>}
                     </div> : <MergedTableContainer />}
+                    {alert}
             </div>
         )
     }
