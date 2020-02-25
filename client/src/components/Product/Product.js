@@ -88,7 +88,7 @@ class NewProduct extends React.Component {
         return (
             <React.Fragment>
                 <this.props.header />
-                {this.props.editProductClicked ? <h3 id="new-products-h3">Edit Product</h3> : <h3 id="new-products-h3">New Product</h3>}
+                {this.props.editProductClicked ? <h1 id="new-products-h1">Edit Product</h1> : <h1 id="new-products-h1">New Product</h1>}
                 <main id="main-box">
                     <div className="box-container">
                         <div className="form-box">
