@@ -34,7 +34,7 @@ class MergedTableContainer extends React.Component {
     render() {
         return (
             <div className="merged-table-container">
-                <h1>Merged Products for {localStorage.getItem('first_name')} and {localStorage.getItem('second-first_name')}</h1>
+                <h1 className="merged-h1">Merged Products for {localStorage.getItem('first_name')} and {localStorage.getItem('second-first_name')}</h1>
                 <div className="merged-select-div">
                     <label htmlFor="merged-sort">Filter by:</label>
                     <select id="merged-sort" className="merged-select" onChange={this.filterHandler}>
