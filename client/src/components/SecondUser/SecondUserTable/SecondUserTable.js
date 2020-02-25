@@ -3,7 +3,6 @@ import './SecondUserTable.css'
 import TableRow from './SecondUserTableRow/SecondUserTableRow'
 import { connect } from 'react-redux'
 import store from '../../../redux/store'
-
 import { getProductsSecond, getTotalPriceSecond } from '../../../redux/actions/productAction'
 import axios from 'axios'
 

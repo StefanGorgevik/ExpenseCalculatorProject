@@ -15,22 +15,20 @@ class MergedTableContainer extends React.Component {
     componentDidUpdate() {
         if(this.state.filterOption === 'name') {
             store.dispatch(mergeTables(true, this.state.filterOption))
-            console.log("sortTableByName")
         }
         if(this.state.filterOption === 'price') {
-            console.log("sortTableByPrice")
             store.dispatch(mergeTables(true, this.state.filterOption))
         }
     }
 
     filterHandler = (event) => {
         this.setState({filterOption: event.target.value})
-        console.log(this.state.filterOption);
     }
 
     goBackHandler = () => {
         store.dispatch(mergeTables(false));
     }
+    
     render() {
         return (
             <div className="merged-table-container">

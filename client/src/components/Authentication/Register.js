@@ -2,9 +2,7 @@ import React from 'react'
 import '../../assets/styles/Authentication.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-
 import { Redirect } from 'react-router-dom'
-
 import store from '../../redux/store'
 import { saveUserName } from '../../redux/actions/userAction'
 import Input from '../Input/Input'
@@ -100,7 +98,6 @@ class Register extends React.Component {
                                                 <button className="primary-btn" type="submit" onClick={this.saveUser}>Register</button>
                                         </form>
                                 </div>
-
                                 <div className="textDiv">
                                         <p>Or if you already have an account, <Link className="additional-info" to="/">Sign in</Link></p>
                                 </div>

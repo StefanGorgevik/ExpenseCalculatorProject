@@ -2,7 +2,6 @@ import React from 'react'
 import './UserInfo.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom'
-
 import { saveUserName } from '../../redux/actions/userAction'
 import store from '../../redux/store'
 import Input from '../Input/Input'
