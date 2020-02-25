@@ -28,9 +28,7 @@ class Table extends React.Component {
                 .then(res => {
                     store.dispatch(getProductsSecond(res.data));
                 })
-                .catch(err => {
-                    console.log(err);
-                })
+                .catch(err => {})
         }
     }
 
@@ -49,17 +47,12 @@ class Table extends React.Component {
                 }
                 store.dispatch(getTotalPriceSecond(totalPrice));
             })
-            .catch(err => {
-                console.log(err);
-            })
+            .catch(err => { })
     }
 
     render() {
         let tableRow = null;
-        console.log("entered")
         if (this.props.secondUserProducts !== []) {
-            console.log("entered2")
-            console.log(this.props.secondUserProducts)
             tableRow = this.props.secondUserProducts.map(product => {
                 return (<TableRow key={product.name + Math.random()} name={product.name}
                     type={product.type}

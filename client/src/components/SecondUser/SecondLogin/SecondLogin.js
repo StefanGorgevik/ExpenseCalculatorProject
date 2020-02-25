@@ -1,9 +1,6 @@
 import React from 'react'
 import './SecondLogin.css'
-// import { Link } from 'react-router-dom'
 import axios from 'axios'
-// import { Redirect } from 'react-router-dom'
-
 import store from '../../../redux/store'
 import Input from '../../Input/Input'
 import { addAccountClicked, secondUserSigned } from '../../../redux/actions/userAction'
@@ -43,7 +40,6 @@ class SecondLogin extends React.Component {
             })
             .catch(err => {
                 this.setState({ error: true })
-                console.log(err)
             });
     }
 
