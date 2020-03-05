@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import { getProducts } from '../../redux/actions/productAction'
 import store from '../../redux/store'
-
+import {getTotalPrice} from '../../redux/actions/productAction'
 class Expenses extends React.Component {
     constructor(props) {
         super(props)
@@ -16,10 +16,19 @@ class Expenses extends React.Component {
             filter: null,
             yearlySelected: null
         }
-        this.year = (new Date()).getFullYear() - 20;
-        this.years = Array.from(new Array(21), (val, index) => index + this.year);
+        this.year = (new Date()).getFullYear() - 1;
+        this.years = Array.from(new Array(3), (val, index) => index + this.year);
         this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
             'September', 'October', 'November', 'December'];
+    }
+
+    getTotalPriceHandler = (products) => {
+        let totalPrice = 0;
+        for (let i = 0; i < products.length; i++) {
+            totalPrice += parseInt(products[i].price)
+        }
+        console.log(totalPrice)
+        store.dispatch(getTotalPrice(totalPrice));
     }
 
     componentDidUpdate() {
@@ -32,6 +41,7 @@ class Expenses extends React.Component {
                 })
                 .then(res => {
                     store.dispatch(getProducts(res.data));
+                    this.getTotalPriceHandler(res.data)
                 })
                 .catch(err => { })
         } else if (this.state.yearlySelected != null && this.state.yearlySelected.length === 4 && !this.state.monthlyDisplay) {
@@ -45,6 +55,7 @@ class Expenses extends React.Component {
                 })
                 .then(res => {
                     store.dispatch(getProducts(res.data))
+                    this.getTotalPriceHandler(res.data)
                 })
                 .catch(err => console.log(err));
         } else if (this.state.filter != null && this.state.yearlySelected != null && this.state.monthlyDisplay) {
@@ -67,8 +78,9 @@ class Expenses extends React.Component {
                 })
                 .then(res => {
                     store.dispatch(getProducts(res.data))
+                    this.getTotalPriceHandler(res.data)
                 })
-                .catch(err => {});
+                .catch(err => { });
         }
     }
 
